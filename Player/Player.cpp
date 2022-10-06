@@ -1,9 +1,9 @@
 #include "Player.h"
 
 Player::Player(){
-    playerSpeed = 0;
+    playerSpeed = 3.0f;
     playerJumpSpeed = 0;
-    playerMaxAccelerator = 50;
+    playerMaxAccelerator = 12.5f;
     jumpFlag = 0;
     kmH = 0;
 
@@ -11,9 +11,9 @@ Player::Player(){
 }
 
 void Player::Initialize(){
-    playerSpeed = 0;
+    playerSpeed = 3.0f;
     playerJumpSpeed = 0;
-    playerMaxAccelerator = 50;
+    playerMaxAccelerator = 12.5f;
     jumpFlag = 0;
     kmH = 0;
 
@@ -23,10 +23,12 @@ void Player::Initialize(){
 void Player::Updata(){
     if (playerSpeed < playerMaxAccelerator) {
         playerSpeed += 0.2;
-        kmH = playerSpeed * 5;
+        kmH = playerSpeed * 50;
 
     }
-
+    debugText_->SetPos(50, 70);
+    debugText_->Printf(
+        "speed:(%f,%f)", playerSpeed, kmH);
 
 }
 
