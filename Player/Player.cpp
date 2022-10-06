@@ -10,6 +10,10 @@ Player::Player(){
     debugText_ = DebugText::GetInstance();
 }
 
+Player::~Player(){
+    delete model_;
+}
+
 void Player::Initialize(){
     playerSpeed = 3.0f;
     playerJumpSpeed = 0;
@@ -22,8 +26,8 @@ void Player::Initialize(){
 
 void Player::Updata(){
     if (playerSpeed < playerMaxAccelerator) {
-        playerSpeed += 0.2;
-        kmH = playerSpeed * 50;
+        playerSpeed += 0.1;
+        kmH = playerSpeed * 20;
 
     }
     debugText_->SetPos(50, 70);

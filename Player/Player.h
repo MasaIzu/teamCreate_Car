@@ -1,10 +1,12 @@
 #pragma once
 #include"DebugText.h"
+#include"Model.h"
 
 class Player {
 
 public:
     Player();
+    ~Player();
 
     /// <summary>
     /// ‰Šú‰»
@@ -35,6 +37,8 @@ public:
 private:
 
     DebugText* debugText_ = nullptr;
+    Model* model_ = nullptr;
+
 
     //ƒƒ“ƒo•Ï”
     float playerSpeed;
