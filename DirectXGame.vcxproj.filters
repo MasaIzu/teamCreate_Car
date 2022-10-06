@@ -49,6 +49,9 @@
     <Filter Include="ヘッダー ファイル\math">
       <UniqueIdentifier>{647f4977-924a-4954-923f-5619e5afc9a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\EEnemy">
+      <UniqueIdentifier>{c0831479-4537-4791-9778-0f180eed7f68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="3d\TerrainCommon.h">
       <Filter>ヘッダー ファイル\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="collison\Collision.h">
+      <Filter>ヘッダー ファイル\EEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
