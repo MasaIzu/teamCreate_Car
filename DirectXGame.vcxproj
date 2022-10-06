@@ -96,13 +96,14 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Affin.cpp" />
     <ClCompile Include="base\DirectXCommon.cpp" />
     <ClCompile Include="base\TextureManager.cpp" />
     <ClCompile Include="base\WinApp.cpp" />
     <ClCompile Include="collision\collision.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\Affin.cpp" />
+    <ClCompile Include="math\Matrix4.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
   </ItemGroup>
@@ -124,7 +125,6 @@
     <ClInclude Include="3d\TerrainCommon.h" />
     <ClInclude Include="3d\ViewProjection.h" />
     <ClInclude Include="3d\WorldTransform.h" />
-    <ClInclude Include="Affin.h" />
     <ClInclude Include="audio\Audio.h" />
     <ClInclude Include="base\DirectXCommon.h" />
     <ClInclude Include="base\SafeDelete.h" />
@@ -133,6 +133,7 @@
     <ClInclude Include="collision\Collision.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="input\Input.h" />
+    <ClInclude Include="math\Affin.h" />
     <ClInclude Include="math\MathUtility.h" />
     <ClInclude Include="math\Matrix4.h" />
     <ClInclude Include="math\Vector2.h" />
