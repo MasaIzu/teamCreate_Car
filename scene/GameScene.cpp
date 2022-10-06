@@ -12,9 +12,26 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
+
+	//3Dモデルの生成
+	model_ = Model::Create();
+
+	//道路生成
+	loadModel_ = Model::CreateFromOBJ("load", true);
+	load_ = new Load();
+	load_->Initialize(loadModel_);
+
+	viewProjection_.eye.y += 80;
+
+	//ビュープロジェクションの初期化
+	viewProjection_.Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+
+	//道路更新
+	load_->Update();
+}
 
 
 void GameScene::Draw() {
@@ -43,6 +60,8 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	//道路描画
+	load_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
