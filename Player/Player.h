@@ -1,4 +1,5 @@
 #pragma once
+#include"DebugText.h"
 
 class Player {
 
@@ -21,15 +22,30 @@ public:
     void Draw();
 
     /// <summary>
-    /// ゲッター
+    /// スピードゲッター
     /// </summary>
     float GetPlayerSpeed();
 
-
+    /// <summary>
+    /// 時速のゲッター
+    /// </summary>
+    float GetKmH();
 
 
 private:
+
+    DebugText* debugText_ = nullptr;
+
     //メンバ変数
+    float playerSpeed;
+    float playerMaxAccelerator;
+    float playerJumpSpeed;
+
+    float kmH;//km/h 時速
+
+    int jumpFlag;
+
+
 
 
 };
