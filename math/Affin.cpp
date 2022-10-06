@@ -1,4 +1,4 @@
-#include "affin.h"
+#include "Affin.h"
 #include <cmath>
 
 const float PI = 3.141592f;

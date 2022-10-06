@@ -1,6 +1,7 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
+#include "Affin.h"
 #include <cassert>
 
 enum class CarModel {
@@ -47,5 +48,8 @@ private:// メンバ変数
 
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
+
+	// アフィン変換
+
 };
 

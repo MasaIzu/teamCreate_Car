@@ -35,7 +35,8 @@ void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
 
 void Enemy::Update()
 {
-	
+	worldTransform_.translation_ += moveSpeed_;
+	AffinTrans::affin(worldTransform_);
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection)
