@@ -27,7 +27,6 @@ void Player::Updata(){
 
     }
 
-    debugText_
 
 }
 
