@@ -10,6 +10,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "Player.h"
+#include "DebugCamera.h"
 
 /// <summary>
 /// ゲームシーン
@@ -48,9 +49,12 @@ class GameScene {
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
 
+
+	ViewProjection viewProjection_;
 	//プレイヤー
 	Player* player_ = nullptr;
 	
+	DebugCamera* debugCamera_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

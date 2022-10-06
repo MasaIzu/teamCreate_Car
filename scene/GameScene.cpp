@@ -4,7 +4,9 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete debugCamera_;
+}
 
 void GameScene::Initialize() {
 
@@ -14,9 +16,15 @@ void GameScene::Initialize() {
 	debugText_ = DebugText::GetInstance();
 
 	player_ = new Player();
+
+	//ビュープロジェクションの初期化
+	viewProjection_.Initialize();
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
 }
 
 void GameScene::Update() {
+	debugCamera_->Update();
 
 	player_->Updata();
 
@@ -48,6 +56,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	player_->Draw(debugCamera_->GetViewProjection());
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
