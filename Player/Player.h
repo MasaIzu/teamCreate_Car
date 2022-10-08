@@ -59,7 +59,11 @@ private:
     int jumpFlag;
     int junpFrame;
 
+    int leftFlag;
+    int rightFlag;
+    float nextPos;
 
+    float playerSideMove;
 
 
 };
