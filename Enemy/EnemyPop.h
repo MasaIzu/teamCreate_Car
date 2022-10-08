@@ -5,25 +5,32 @@
 class EnemyPop
 {
 public:// メンバ関数
-	void Update();
-	void Draw();
+
+	// 更新処理
+	void Update(Model* model);
+
+	// 描画処理
+	void Draw(const ViewProjection& viewProjection);
+private:
+	// 車種のパターンを抽選する関数
+	void CarModelLottery();
 private:// メンバ変数
 	// 敵の生成パターンのリスト
 	std::list<std::unique_ptr<Enemy>> enemy1;
 	std::list<std::unique_ptr<Enemy>> enemy2;
 	
 	// 敵の位置のパターンの配列
-	Vector3 enemyPos1[3] = { { 0, 0, 0},
-							 {-1, 0, 0},
-						     { 1, 0, 0} };
+	Vector3 enemyPos1[3] = { { 0, 0, 1},
+							 {-2, 0,-2},
+						     { 2, 0,-3} };
 
-	Vector3 enemyPos2[3] = { {-1, 0, 0},
-						     {-2, 0, 1},
-						     { 1, 0,-1} };
+	Vector3 enemyPos2[3] = { {-2, 0, 0},
+						     {-4, 0, 1},
+						     { 2, 0,-2} };
 
-	Vector3 enemyPos3[3] = { { 2, 0,-1},
-							 {-1, 0,-1},
-							 { 1, 0, 1} };
+	Vector3 enemyPos3[3] = { { 4, 0,-2},
+							 {-2, 0,-2},
+							 { 2, 0, 2} };
 	// 敵のランダムパターン
 	int carModelnum_ = 0;
 	CarModel carModel_ = CarModel::truck;
@@ -33,7 +40,7 @@ private:// メンバ変数
 	int popTimer = 0;
 	
 	// 敵のポップする間隔のタイマー
-	int popInterval = 3 * 60;
+	int popInterval = 5 * 60;
 
 };
 

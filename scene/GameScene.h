@@ -11,6 +11,7 @@
 #include "WorldTransform.h"
 #include "Player.h"
 #include "DebugCamera.h"
+#include "EnemyPop.h"
 
 /// <summary>
 /// ゲームシーン
@@ -49,11 +50,16 @@ class GameScene {
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
 
+	//3Dモデル
+	Model* model_ = nullptr;
 
 	ViewProjection viewProjection_;
 	//プレイヤー
 	Player* player_ = nullptr;
 	
+	// 敵の生成
+	EnemyPop* enemyPop_ = nullptr;
+
 	DebugCamera* debugCamera_ = nullptr;
 
 	/// <summary>

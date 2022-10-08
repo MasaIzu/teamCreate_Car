@@ -20,13 +20,13 @@ void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
-		moveSpeed_ = { 0.6f,0.6f, 0.6f };
+		moveSpeed_ = { 0.0f,0.0f, 0.1f };
 		break;
 	case CarModel::prius:
-		moveSpeed_ = { 1.0f,1.0f, 1.0f };
+		moveSpeed_ = { 0.0f,0.0f, 0.2f };
 		break;
 	case CarModel::ferrari:
-		moveSpeed_ = { 1.6f,1.6f, 1.6f };
+		moveSpeed_ = { 0.0f,0.0f, 0.25f };
 		break;
 	default:
 		break;
@@ -37,11 +37,12 @@ void Enemy::Update()
 {
 	worldTransform_.translation_ += moveSpeed_;
 	AffinTrans::affin(worldTransform_);
+	worldTransform_.TransferMatrix();
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection)
 {
-	if (isDead_ == false) {
-		model_->Draw(worldTransform_, viewProjection, textureHandle_);
-	}
+	//if (isDead_ == false) {
+		model_->Draw(worldTransform_, viewProjection);
+	//}
 }

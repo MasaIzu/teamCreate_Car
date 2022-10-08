@@ -36,7 +36,7 @@ private:// メンバ変数
 
 	// 速度全般
 	// 進む速度
-	Vector3 moveSpeed_ = { 1.0f,1.0f,1.0f };
+	Vector3 moveSpeed_ = { 0.0f,0.0f,1.0f };
 	// 回転速度
 	Vector3 rotationSpeed_ = { 0.1f,0.1f, 0.1f };
 

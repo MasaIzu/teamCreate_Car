@@ -14,8 +14,14 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
+	//３Dモデルの生成
+	model_ = Model::Create();
 
+	// プレイヤーのnew
 	player_ = new Player();
+
+	// 敵の生成のnew
+	enemyPop_ = new EnemyPop();
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -27,6 +33,8 @@ void GameScene::Update() {
 	debugCamera_->Update();
 
 	player_->Updata();
+	enemyPop_->Update(model_);
+
 
 }
 
@@ -56,7 +64,12 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
+	// プレイヤーの描画
 	player_->Draw(debugCamera_->GetViewProjection());
+
+	// 敵の描画
+	enemyPop_->Draw(debugCamera_->GetViewProjection());
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
