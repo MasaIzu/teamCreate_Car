@@ -12,12 +12,12 @@ Player::Player() {
 	leftFlag = 0;
 	rightFlag = 0;
 	nextPos = 0;
-	playerSideMove = 0.02;
+	playerSideMove = 1.0;
 
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = { 0, 0, 0 };
+	worldTransform_.translation_ = { -1, 0, 0 };
 	worldTransform_.scale_ = { 5,5,5 };
 	
 	//行列更新
@@ -78,14 +78,14 @@ void Player::Updata() {
 
 	//車線変更 左
 	if (input_->TriggerKey(DIK_LEFT)) {
-		if (nextPos > -4) {
-			nextPos -= 2;
+		if (nextPos > -37) {
+			nextPos -= 18.5;
 		}
 	}
 	//車線変更 右
 	if (input_->TriggerKey(DIK_RIGHT)) {
-		if (nextPos < 4) {
-			nextPos += 2;
+		if (nextPos < 37) {
+			nextPos += 18.5;
 		}
 	}
 	//横移動
