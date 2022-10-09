@@ -67,6 +67,12 @@
     <Filter Include="ヘッダー ファイル\player">
       <UniqueIdentifier>{89f1c1ad-522a-4817-a32f-3a04fcdfc566}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\backGround">
+      <UniqueIdentifier>{c9da93fb-543f-43bb-afa1-a3a1e0f1c316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\backGround">
+      <UniqueIdentifier>{6c326f20-1eaa-40a6-a136-0d4f4e711844}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Enemy\EnemyPop.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Load.cpp">
+      <Filter>ソース ファイル\backGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Enemy\EnemyPop.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>ヘッダー ファイル\backGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
