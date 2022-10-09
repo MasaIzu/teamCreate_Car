@@ -63,7 +63,7 @@ void Player::Updata() {
 	if (jumpFlag == 1) {
 		//ジャンプフレーム
 		junpFrame++;
-		playerJumpSpeed = 0.8f - gravity * (static_cast<float>(junpFrame) / 150.0f);
+		playerJumpSpeed = 1.5f - gravity * (static_cast<float>(junpFrame) / 120.0f);
 		worldTransform_.translation_.y += playerJumpSpeed;
 	}
 
@@ -77,15 +77,17 @@ void Player::Updata() {
 
 
 	//車線変更 左
-	if (input_->TriggerKey(DIK_LEFT)) {
-		if (nextPos > -37) {
-			nextPos -= 18.5;
+	if (jumpFlag == 0) {
+		if (input_->TriggerKey(DIK_LEFT)) {
+			if (nextPos > -37) {
+				nextPos -= 18.5;
+			}
 		}
-	}
-	//車線変更 右
-	if (input_->TriggerKey(DIK_RIGHT)) {
-		if (nextPos < 37) {
-			nextPos += 18.5;
+		//車線変更 右
+		if (input_->TriggerKey(DIK_RIGHT)) {
+			if (nextPos < 37) {
+				nextPos += 18.5;
+			}
 		}
 	}
 	//横移動
