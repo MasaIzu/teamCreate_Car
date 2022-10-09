@@ -1,9 +1,9 @@
 #include "Player.h"
 
 Player::Player() {
-	playerSpeed = 3.0f;
+	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
-	playerMaxAccelerator = 12.5f;
+	playerMaxAccelerator = 5.0f;
 	jumpFlag = 0;
 	kmH = 0;
 	gravity = 6.0f;
