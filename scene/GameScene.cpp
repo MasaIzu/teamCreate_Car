@@ -24,8 +24,11 @@ void GameScene::Initialize() {
 	enemyPop_ = new EnemyPop();
 
 	//ビュープロジェクションの初期化
+	viewProjection_.eye.y += 70;
+	viewProjection_.eye.z -= 80;
+	viewProjection_.target.y += 20;
 	viewProjection_.Initialize();
-	viewProjection_.eye.y += 80;
+
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
@@ -40,6 +43,9 @@ void GameScene::Update() {
 
 	player_->Updata();
 	enemyPop_->Update(model_);
+	
+	
+	
 
 	//道路更新
 	load_->Update();
@@ -74,13 +80,13 @@ void GameScene::Draw() {
 	/// </summary>
 	
 	// プレイヤーの描画
-	player_->Draw(debugCamera_->GetViewProjection());
+	player_->Draw(viewProjection_);
 
 	// 敵の描画
-	enemyPop_->Draw(debugCamera_->GetViewProjection());
+	enemyPop_->Draw(viewProjection_);
 
 	//道路描画
-	load_->Draw(debugCamera_->GetViewProjection());
+	load_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

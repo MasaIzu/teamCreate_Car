@@ -15,22 +15,26 @@ private:
 	// 車種のパターンを抽選する関数
 	void CarModelLottery();
 private:// メンバ変数
+
 	// 敵の生成パターンのリスト
 	std::list<std::unique_ptr<Enemy>> enemy1;
 	std::list<std::unique_ptr<Enemy>> enemy2;
 	
+	// 一つのレーンの幅
+	float loadWidth = 18.5f;
+
 	// 敵の位置のパターンの配列
-	Vector3 enemyPos1[3] = { { 0, 0, 1},
-							 {-2, 0,-2},
-						     { 2, 0,-3} };
+	Vector3 enemyPos1[3] = { { 0 * loadWidth, 0, 22*loadWidth},
+							 {-2 * loadWidth, 0, 20*loadWidth},
+							 { 2 * loadWidth, 0, 21*loadWidth} };
 
-	Vector3 enemyPos2[3] = { {-2, 0, 0},
-						     {-4, 0, 1},
-						     { 2, 0,-2} };
+	Vector3 enemyPos2[3] = { {-1 * loadWidth, 0, 22*loadWidth},
+							 {-2 * loadWidth, 0, 21*loadWidth},
+							 { 1 * loadWidth, 0, 20*loadWidth} };
 
-	Vector3 enemyPos3[3] = { { 4, 0,-2},
-							 {-2, 0,-2},
-							 { 2, 0, 2} };
+	Vector3 enemyPos3[3] = { { 2 * loadWidth, 0, 22*loadWidth},
+							 {-1 * loadWidth, 0, 21*loadWidth},
+							 { 1 * loadWidth, 0, 20*loadWidth} };
 	// 敵のランダムパターン
 	int carModelnum_ = 0;
 	CarModel carModel_ = CarModel::truck;
