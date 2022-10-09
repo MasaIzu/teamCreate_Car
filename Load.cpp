@@ -12,7 +12,7 @@ void Load::Initialize(Model* model) {
 	//初期座標をセット
 	for (int i = 0; i < 20; i++) {
 		float z = i * 39;
-		worldTransform_[i].translation_ = Vector3{ 0,-6,z};
+		worldTransform_[i].translation_ = Vector3{ 0,-6,z };
 
 		//ワールド変換の初期化
 		worldTransform_[i].Initialize();
@@ -28,8 +28,11 @@ void Load::Update(float speed) {
 	for (int i = 0; i < 20; i++) {
 		worldTransform_[i].translation_.z -= speed;
 
-		if (worldTransform_[i].translation_.z < -90) {
-			worldTransform_[i].translation_.z = 18* 39 - 20;
+		if (worldTransform_[i].translation_.z < -117) {
+			worldTransform_[0].translation_.z = worldTransform_[19].translation_.z + 30;
+			if (i != 0) {
+				worldTransform_[i].translation_.z = worldTransform_[i - 1].translation_.z + 39;
+			}
 		}
 
 		//行列更新
