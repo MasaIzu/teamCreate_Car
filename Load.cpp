@@ -20,10 +20,10 @@ void Load::Initialize(Model* model) {
 		worldTransform_[i].scale_ = Vector3{ 10,10,10 };
 	}
 
-	speed = 3;
+	speed_ = 3;
 }
 
-void Load::Update() {
+void Load::Update(float speed) {
 	for (int i = 0; i < 7; i++) {
 		worldTransform_[i].translation_.z -= speed;
 

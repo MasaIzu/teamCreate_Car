@@ -14,7 +14,7 @@ public:
 	///<summary>
 	///XV
 	/// </summary>
-	void Update();
+	void Update(float speed);
 
 	///<summary>
 	///•`‰æ
@@ -27,5 +27,5 @@ private:
 	//ƒ‚ƒfƒ‹
 	Model* model_;
 
-	int speed;
+	float speed_;
 };

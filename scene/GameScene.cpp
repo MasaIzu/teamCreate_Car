@@ -24,11 +24,10 @@ void GameScene::Initialize() {
 	enemyPop_ = new EnemyPop();
 
 	//ビュープロジェクションの初期化
+	viewProjection_.Initialize();
 	viewProjection_.eye.y += 70;
 	viewProjection_.eye.z -= 80;
 	viewProjection_.target.y += 20;
-	viewProjection_.Initialize();
-
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
@@ -36,6 +35,9 @@ void GameScene::Initialize() {
 	loadModel_ = Model::CreateFromOBJ("load", true);
 	load_ = new Load();
 	load_->Initialize(loadModel_);
+
+	viewProjection_.UpdateMatrix();
+	viewProjection_.TransferMatrix();
 }
 
 void GameScene::Update() {
@@ -48,7 +50,7 @@ void GameScene::Update() {
 	
 
 	//道路更新
-	load_->Update();
+	load_->Update(player_->GetPlayerSpeed());
 
 }
 
