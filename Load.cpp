@@ -29,7 +29,7 @@ void Load::Update(float speed) {
 		worldTransform_[i].translation_.z -= speed;
 
 		if (worldTransform_[i].translation_.z < -117) {
-			worldTransform_[0].translation_.z = worldTransform_[19].translation_.z + 30;
+			worldTransform_[0].translation_.z = worldTransform_[19].translation_.z + 32;
 			if (i != 0) {
 				worldTransform_[i].translation_.z = worldTransform_[i - 1].translation_.z + 39;
 			}
