@@ -3,7 +3,7 @@
 Player::Player() {
 	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
-	playerMaxAccelerator = 5.0f;
+	playerMaxAccelerator = 8.0f;
 	jumpFlag = 0;
 	kmH = 0;
 	gravity = 6.0f;
@@ -54,7 +54,7 @@ void Player::Updata() {
 	//だんだんと動くスピードを上げる
 	if (playerSpeed < playerMaxAccelerator) {
 		playerSpeed += 0.05f;
-		kmH = playerSpeed * 50;
+		kmH = playerSpeed * 25;
 	}
 	//スペース押されたらジャンプ
 	if (input_->TriggerKey(DIK_SPACE)) {
