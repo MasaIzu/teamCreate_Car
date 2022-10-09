@@ -27,7 +27,7 @@ void GameScene::Initialize() {
 	viewProjection_.Initialize();
 	viewProjection_.eye.y += 70;
 	viewProjection_.eye.z -= 80;
-	viewProjection_.target.y += 20;
+	viewProjection_.target.y += 0;
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 

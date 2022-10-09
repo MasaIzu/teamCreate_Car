@@ -11,7 +11,7 @@ void Load::Initialize(Model* model) {
 
 	//初期座標をセット
 	for (int i = 0; i < 20; i++) {
-		float z = i * 39;
+		float z = i * 39 - 117;
 		worldTransform_[i].translation_ = Vector3{ 0,-6,z };
 
 		//ワールド変換の初期化
