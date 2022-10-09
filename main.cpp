@@ -5,6 +5,8 @@
 #include "WinApp.h"
 #include "AxisIndicator.h"
 #include "PrimitiveDrawer.h"
+#include "ErrorException.h"
+#include "FPS.h"
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -55,6 +57,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	primitiveDrawer = PrimitiveDrawer::GetInstance();
 	primitiveDrawer->Initialize();
+
+	FPS* fps = new FPS;
 #pragma endregion
 
 	// ゲームシーンの初期化
@@ -63,6 +67,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// メインループ
 	while (true) {
+		//fps制限
+		fps->FpsControlBegin();
 		// メッセージ処理
 		if (win->ProcessMessage()) {
 			break;
@@ -85,6 +91,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		primitiveDrawer->Reset();
 		// 描画終了
 		dxCommon->PostDraw();
+
+		fps->FpsControlEnd();
 	}
 
 	// 各種解放

@@ -102,6 +102,7 @@
     <ClCompile Include="collision\collision.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyPop.cpp" />
+    <ClCompile Include="FPS.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Affin.cpp" />
@@ -135,6 +136,8 @@
     <ClInclude Include="collision\Collision.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyPop.h" />
+    <ClInclude Include="ErrorException.h" />
+    <ClInclude Include="FPS.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="math\Affin.h" />

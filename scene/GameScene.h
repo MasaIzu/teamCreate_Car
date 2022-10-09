@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "DebugCamera.h"
 #include "EnemyPop.h"
+#include "Load.h"
 
 /// <summary>
 /// ゲームシーン
@@ -61,6 +62,11 @@ class GameScene {
 	EnemyPop* enemyPop_ = nullptr;
 
 	DebugCamera* debugCamera_ = nullptr;
+
+
+	//道路
+	Model* loadModel_ = nullptr;
+	Load* load_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

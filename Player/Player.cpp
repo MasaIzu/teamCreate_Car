@@ -18,6 +18,8 @@ Player::Player() {
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = { 0, 0, 0 };
+	worldTransform_.scale_ = { 5,5,5 };
+	
 	//行列更新
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();

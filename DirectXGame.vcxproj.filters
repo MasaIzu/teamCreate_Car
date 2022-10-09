@@ -73,6 +73,12 @@
     <Filter Include="ヘッダー ファイル\backGround">
       <UniqueIdentifier>{6c326f20-1eaa-40a6-a136-0d4f4e711844}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Control">
+      <UniqueIdentifier>{7336207c-73eb-4e95-a734-8ac66c3531ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Control">
+      <UniqueIdentifier>{dffc35d9-b02d-47b8-981e-412d182a6f31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="Load.cpp">
       <Filter>ソース ファイル\backGround</Filter>
+    </ClCompile>
+    <ClCompile Include="FPS.cpp">
+      <Filter>ソース ファイル\Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="Load.h">
       <Filter>ヘッダー ファイル\backGround</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
+      <Filter>ヘッダー ファイル\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorException.h">
+      <Filter>ヘッダー ファイル\Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
