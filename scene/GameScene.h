@@ -55,6 +55,7 @@ class GameScene {
 	Model* model_ = nullptr;
 
 	ViewProjection viewProjection_;
+
 	//プレイヤー
 	Player* player_ = nullptr;
 	

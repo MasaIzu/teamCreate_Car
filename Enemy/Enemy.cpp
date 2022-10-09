@@ -12,6 +12,7 @@ void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
 
 	// 初期座標を設定
 	worldTransform_.translation_ = pos;
+	worldTransform_.scale_ = { 5,5,5 };
 
 	// 車種を設定
 	carModel_ = carModel;
@@ -20,13 +21,13 @@ void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
-		moveSpeed_ = { 0.0f,0.0f, 0.1f };
+		moveSpeed_ = { 0.0f,0.0f, 3.0f };
 		break;
 	case CarModel::prius:
-		moveSpeed_ = { 0.0f,0.0f, 0.2f };
+		moveSpeed_ = { 0.0f,0.0f, 2.0f };
 		break;
 	case CarModel::ferrari:
-		moveSpeed_ = { 0.0f,0.0f, 0.25f };
+		moveSpeed_ = { 0.0f,0.0f, 1.5f };
 		break;
 	default:
 		break;
@@ -39,7 +40,7 @@ void Enemy::Update()
 	lifeTimer++;
 
 	//前に進む処理
-	worldTransform_.translation_ += moveSpeed_;
+	worldTransform_.translation_ -= moveSpeed_;
 
 	// 行列を計算し転送
 	AffinTrans::affin(worldTransform_);

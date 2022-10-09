@@ -45,6 +45,9 @@ void GameScene::Update() {
 
 	player_->Updata();
 	enemyPop_->Update(model_);
+	
+	
+	
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
