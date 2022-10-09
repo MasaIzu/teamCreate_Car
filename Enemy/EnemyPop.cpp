@@ -4,6 +4,10 @@ void EnemyPop::Update(Model* model)
 {
 	popTimer++;
 
+	// 敵のデスフラグが立っていたらリストから消す
+	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
+
+
 	// タイマーが間隔時間になったらランダムに生成と車種を抽選して、設定する
 	if (popTimer >= popInterval){
 		carPattern_ = rand() % 3 + 1;

@@ -49,7 +49,9 @@ private:// メンバ変数
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
 
-	// アフィン変換
+	// 生きている時間
+	int lifeTimer = 0;
+	int lifeInterval = 6 * 60;
 
 };
 

@@ -35,9 +35,20 @@ void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
 
 void Enemy::Update()
 {
+	// ¶‚«‚Ä‚¢‚éŽžŠÔ‚ð‰ÁŽZ
+	lifeTimer++;
+
+	//‘O‚Éi‚Þˆ—
 	worldTransform_.translation_ += moveSpeed_;
+
+	// s—ñ‚ðŒvŽZ‚µ“]‘—
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();
+
+	// ¶‚«‚Ä‚¢‚éŽžŠÔ‚ªŒÀŠE‚É’B‚µ‚½‚çÁ‚·
+	if (lifeTimer >= lifeInterval) {
+		isDead_ = true;
+	}
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection)
