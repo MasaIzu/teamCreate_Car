@@ -92,7 +92,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 描画終了
 		dxCommon->PostDraw();
 
-		//fps->FpsControlEnd();
+		fps->FpsControlEnd();
 	}
 
 	// 各種解放
