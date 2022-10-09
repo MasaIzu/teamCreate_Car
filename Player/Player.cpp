@@ -3,7 +3,7 @@
 Player::Player() {
 	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
-	playerMaxAccelerator = 8.0f;
+	playerMaxAccelerator = 16.0f;
 	jumpFlag = 0;
 	kmH = 0;
 	gravity = 6.0f;
