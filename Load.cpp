@@ -10,7 +10,7 @@ void Load::Initialize(Model* model) {
 	model_ = model;
 
 	//初期座標をセット
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 20; i++) {
 		float z = i * 39;
 		worldTransform_[i].translation_ = Vector3{ 0,-6,z};
 
@@ -25,11 +25,11 @@ void Load::Initialize(Model* model) {
 
 
 void Load::Update(float speed) {
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 20; i++) {
 		worldTransform_[i].translation_.z -= speed;
 
 		if (worldTransform_[i].translation_.z < -90) {
-			worldTransform_[i].translation_.z = 370;
+			worldTransform_[i].translation_.z = 18* 39 - 20;
 		}
 
 		//行列更新
@@ -40,7 +40,7 @@ void Load::Update(float speed) {
 
 void Load::Draw(ViewProjection viewProjection) {
 	//3Dモデルを描画
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 20; i++) {
 		model_->Draw(worldTransform_[i], viewProjection);
 	}
 }

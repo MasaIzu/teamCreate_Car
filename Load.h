@@ -23,7 +23,7 @@ public:
 
 private:
 	//ワールド変換データ
-	WorldTransform worldTransform_[12];
+	WorldTransform worldTransform_[20];
 	//モデル
 	Model* model_;
 
