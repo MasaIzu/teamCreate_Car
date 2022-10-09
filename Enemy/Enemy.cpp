@@ -52,6 +52,11 @@ void Enemy::Update()
 	}
 }
 
+void Enemy::LaneChange(Vector3& pos)
+{
+
+}
+
 void Enemy::Draw(const ViewProjection& viewProjection)
 {
 	//if (isDead_ == false) {
