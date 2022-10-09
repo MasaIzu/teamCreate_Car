@@ -76,14 +76,14 @@ void Player::Updata() {
 
 	//ŽÔü•ÏX ¶
 	if (input_->TriggerKey(DIK_LEFT)) {
-		if (nextPos > -2) {
-			nextPos--;
+		if (nextPos > -4) {
+			nextPos -= 2;
 		}
 	}
 	//ŽÔü•ÏX ‰E
 	if (input_->TriggerKey(DIK_RIGHT)) {
-		if (nextPos < 2) {
-			nextPos++;
+		if (nextPos < 4) {
+			nextPos += 2;
 		}
 	}
 	//‰¡ˆÚ“®
