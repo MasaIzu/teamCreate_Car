@@ -20,6 +20,9 @@ public:// メンバ関数
 	// 更新処理関数
 	void Update();
 
+	// 車線変更処理関数
+	void LaneChange(Vector3& pos);
+
 	// 描画処理関数
 	void Draw(const ViewProjection& viewProjection);
 
