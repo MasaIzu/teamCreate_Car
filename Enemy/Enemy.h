@@ -27,7 +27,11 @@ public:// メンバ関数
 
 	void RightLaneChangeCheck(Vector3& pos);
 
+	// ポジションのゲッター
 	Vector3 GetPos() { return worldTransform_.translation_; }
+
+	// セッター
+	void SetWouldTransform(WorldTransform worldTransform);
 
 	// 描画処理関数
 	void Draw(const ViewProjection& viewProjection);

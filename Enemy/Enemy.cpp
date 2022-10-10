@@ -79,6 +79,11 @@ void Enemy::RightLaneChangeCheck(Vector3& pos)
 	}
 }
 
+void Enemy::SetWouldTransform(WorldTransform worldTransform)
+{
+	worldTransform_ = worldTransform;
+}
+
 void Enemy::Draw(const ViewProjection& viewProjection)
 {
 	//if (isDead_ == false) {
