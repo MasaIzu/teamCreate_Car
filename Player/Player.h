@@ -38,6 +38,10 @@ public:
     /// </summary>
     float GetKmH();
 
+    /// <summary>
+    /// 動いてるフラグ
+    /// </summary>
+    int GetMovingFlag();
 
 private:
     //ワールド変換データ
@@ -61,6 +65,7 @@ private:
 
     int leftFlag;
     int rightFlag;
+    int moving;
     float nextPos;
 
     float playerSideMove;
