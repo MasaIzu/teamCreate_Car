@@ -21,6 +21,10 @@ public:// メンバ関数
 	void Update();
 
 	// 車線変更処理関数
+	void Lane1ChangeCheck(Vector3 & pos);
+
+	void Lane5ChangeCheck(Vector3& pos);
+
 	void LaneChangeCheck(Vector3& pos);
 
 	void LeftLaneChangeCheck(Vector3& pos);
@@ -29,6 +33,17 @@ public:// メンバ関数
 
 	// ポジションのゲッター
 	Vector3 GetPos() { return worldTransform_.translation_; }
+
+	// 車線変更フラグのゲッター
+	bool laneChangeFlag() const { return laneChangeFlag_; }
+
+	bool lane1ChangeFlag() const { return lane1ChangeFlag_; }
+
+	bool lane5ChangeFlag() const { return lane5ChangeFlag_; }
+
+	bool leftLaneChangeFlag() const { return leftLaneChangeFlag_; }
+
+	bool rightLaneChangeFlag() const { return rightLaneChangeFlag_; }
 
 	// セッター
 	void SetWouldTransform(WorldTransform worldTransform);
@@ -70,11 +85,16 @@ private:// メンバ変数
 	float loadWidth = 18.5f;
 
 	// 車線変更フラグ
-	bool laneChangeFlag = false;
-	bool leftLaneChangeFlag = false;
-	bool rightLaneChangeFlag = false;
+	bool laneChangeFlag_ = false;
+	bool lane1ChangeFlag_ = false;
+	bool lane5ChangeFlag_ = false;
+	bool leftLaneChangeFlag_ = false;
+	bool rightLaneChangeFlag_ = false;
 
 	// 車線変更を行う際の前のの車との判定をとる半径
-	float laneRadius = 2 * loadWidth;
+	float laneRadius = 3 * loadWidth;
+
+	// 最初の位置を保存
+	Vector3 initPos;
 };
 

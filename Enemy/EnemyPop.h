@@ -11,6 +11,9 @@ public:// メンバ関数
 
 	// 描画処理
 	void Draw(const ViewProjection& viewProjection);
+
+	std::list<std::unique_ptr<Enemy>> GetEnemyList() { return enemy1; }
+
 private:
 	// 車種のパターンを抽選する関数
 	void CarModelLottery();
