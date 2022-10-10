@@ -1,34 +1,34 @@
 #include "Collision.h"
 
-bool collision::boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, float playerWidthZ, float playerHight, float enemyWidthX, float enemyWidthZ, float enemyHight)
+bool collision::boxCollision(Vector3 player, Vector3 enemy, Vector3 playerWidth, Vector3 enemyWidth)
 {
-	
+
 	//プレイヤー
-	float pXMin = player.x - playerWidthX;
+	float pXMin = player.x - playerWidth.x;
 
-	float pXMax = player.x + playerWidthX;
-	
-	float pYMin = player.y - playerHight;
+	float pXMax = player.x + playerWidth.x;
 
-	float pYMax = player.y + playerHight;
+	float pYMin = player.y - playerWidth.y;
 
-	float pZMin = player.z - playerWidthZ;
+	float pYMax = player.y + playerWidth.y;
 
-	float pZMax = player.z + playerWidthZ;
-	
+	float pZMin = player.z - playerWidth.z;
+
+	float pZMax = player.z + playerWidth.z;
+
 	//敵
 	//平面
-	float eXMin = enemy.x - enemyWidthX;
+	float eXMin = enemy.x - enemyWidth.x;
 
-	float eXMax = enemy.x + enemyWidthX;
+	float eXMax = enemy.x + enemyWidth.x;
 
-	float eYMin = enemy.y - enemyHight;
+	float eYMin = enemy.y - enemyWidth.y;
 
-	float eYMax = enemy.y + enemyHight;
+	float eYMax = enemy.y + enemyWidth.y;
 
-	float eZMin = enemy.z - enemyWidthZ;
+	float eZMin = enemy.z - enemyWidth.z;
 
-	float eZMax = enemy.z + enemyWidthZ;
+	float eZMax = enemy.z + enemyWidth.z;
 
 	if ((pXMin <= eXMax && pXMax >= eXMin) && (pYMin <= eYMax && pYMax >= eYMin) && (pZMin <= eZMax && pZMax >= eZMin)) {
 		return true;
@@ -36,35 +36,35 @@ bool collision::boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, 
 	return false;
 }
 
-bool collision::boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, float playerWidthZ, float playerHight, float enemyWidthX, float enemyWidthZ, float enemyHight ,bool flag)
+bool collision::boxCollision(Vector3 player, Vector3 enemy, Vector3 playerWidth, Vector3 enemyWidth, bool flag)
 {
 
-	//プレイヤー
-	float pXMin = player.x - playerWidthX;
+	///プレイヤー
+	float pXMin = player.x - playerWidth.x;
 
-	float pXMax = player.x + playerWidthX;
+	float pXMax = player.x + playerWidth.x;
 
-	float pYMin = player.y - playerHight;
+	float pYMin = player.y - playerWidth.y;
 
-	float pYMax = player.y + playerHight;
+	float pYMax = player.y + playerWidth.y;
 
 	float pZMin = 0;
 
-	float pZMax = player.z + playerWidthZ;
+	float pZMax = player.z + playerWidth.z;
 
 	//敵
 	//平面
-	float eXMin = enemy.x - enemyWidthX;
+	float eXMin = enemy.x - enemyWidth.x;
 
-	float eXMax = enemy.x + enemyWidthX;
+	float eXMax = enemy.x + enemyWidth.x;
 
-	float eYMin = enemy.y - enemyHight;
+	float eYMin = enemy.y - enemyWidth.y;
 
-	float eYMax = enemy.y + enemyHight;
+	float eYMax = enemy.y + enemyWidth.y;
 
-	float eZMin = enemy.z - enemyWidthZ;
+	float eZMin = enemy.z - enemyWidth.z;
 
-	float eZMax = enemy.z + enemyWidthZ;
+	float eZMax = enemy.z + enemyWidth.z;
 
 	if ((pXMin <= eXMax && pXMax >= eXMin) && (pYMin <= eYMax && pYMax >= eYMin) && (pZMin <= eZMax && pZMax >= eZMin)) {
 		return true;
@@ -72,6 +72,17 @@ bool collision::boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, 
 	return false;
 }
 
-void collision::Contact(int playerMove, Vector3 player, WorldTransform enemy)
+void collision::Contact(int playerMove, Vector3 player, WorldTransform enemy,Vector3 enemyRotationMove, Vector3 enemyMove)
 {
+	if (playerMove == 1) {
+		enemy.rotation_ += enemyRotationMove;
+		enemy.translation_ += enemyMove;
+	}
+	else if (playerMove == 0) {
+		enemy.translation_ += enemyMove;
+	}
+	else if (playerMove == -1) {
+		enemy.rotation_ += enemyRotationMove;
+		enemy.translation_ -= enemyMove;
+	}
 }
