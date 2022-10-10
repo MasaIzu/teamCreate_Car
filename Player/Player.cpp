@@ -53,7 +53,6 @@ void Player::Initialize() {
 
 void Player::Updata() {
 	PlayerMove();
-	EnemyCarBack();
 }
 
 void Player::Draw(ViewProjection viewProjection_) {
