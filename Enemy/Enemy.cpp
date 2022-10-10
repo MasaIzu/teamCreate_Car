@@ -47,8 +47,8 @@ void Enemy::Update()
 		if (worldTransform_.translation_.x > initPos.x - (1 * loadWidth)) {
 			worldTransform_.translation_.x -= 0.5f;
 		}
-		if (worldTransform_.translation_.x <= initPos.x - (1 * loadWidth)) {
-			leftLaneChangeFlag_ = false;
+		else if (worldTransform_.translation_.x < initPos.x - (1 * loadWidth)) {
+			worldTransform_.translation_.x = initPos.x - (1 * loadWidth);
 		}
 	}
 
@@ -57,8 +57,8 @@ void Enemy::Update()
 		if (worldTransform_.translation_.x < initPos.x + (1 * loadWidth)) {
 			worldTransform_.translation_.x += 0.5f;
 		}
-		if (worldTransform_.translation_.x >= initPos.x + (1 * loadWidth)) {
-			rightLaneChangeFlag_ = false;
+		else if (worldTransform_.translation_.x > initPos.x + (1 * loadWidth)) {
+			worldTransform_.translation_.x = initPos.x + (1 * loadWidth);
 		}
 	}
 
@@ -75,11 +75,11 @@ void Enemy::Update()
 void Enemy::Lane1ChangeCheck(Vector3& pos)
 {
 	Vector3 pos_ = worldTransform_.translation_;
-
+	float radius = pos_.z + laneRadius;
 	// 一番左側のレーンにいた場合の車線変更
 	if (pos_.x == pos.x) {
 		if (pos_.x <= -2 * loadWidth) {
-			if (pos_.z <= pos.z + laneRadius && pos_.z > pos.z) {
+			if (pos.z <= radius && pos.z > pos_.z) {
 				lane1ChangeFlag_ = true;
 			}
 		}
@@ -89,11 +89,11 @@ void Enemy::Lane1ChangeCheck(Vector3& pos)
 void Enemy::Lane5ChangeCheck(Vector3& pos)
 {
 	Vector3 pos_ = worldTransform_.translation_;
-
+	float radius = pos_.z + laneRadius;
 	// 一番右側のレーンにいた場合の車線変更
 	if (pos_.x == pos.x) {
 		if (pos_.x >= 2 * loadWidth) {
-			if (pos_.z <= pos.z + laneRadius && pos_.z > pos.z) {
+			if (pos.z <= radius && pos.z > pos_.z) {
 				lane5ChangeFlag_ = true;
 			}
 		}
@@ -103,9 +103,9 @@ void Enemy::Lane5ChangeCheck(Vector3& pos)
 void Enemy::LaneChangeCheck(Vector3& pos)
 {
 	Vector3 pos_ = worldTransform_.translation_;
-
+	float radius = pos_.z + laneRadius;
 	if (pos_.x == pos.x) {
-		if (pos.z <= pos_.z + laneRadius && pos.z > pos_.z) {
+		if (pos_.z < pos.z && radius > pos.z ) {
 			laneChangeFlag_ = true;
 		}
 	}
@@ -115,7 +115,14 @@ void Enemy::LaneChangeCheck(Vector3& pos)
 void Enemy::LeftLaneChangeCheck(Vector3& pos)
 {
 	Vector3 leftpos = { worldTransform_.translation_.x - (1 * loadWidth),worldTransform_.translation_.y,worldTransform_.translation_.z };
-	if (leftpos.z += laneRadius <= pos.z) {
+	float radius = leftpos.z + 70;
+	float radius_ = leftpos.z - 60;
+	if (leftpos.x == pos.x) {
+		if (radius > pos.z && radius_ < pos.z) {
+			leftLaneChangeFlag_ = false;
+		}
+	}
+	else {
 		leftLaneChangeFlag_ = true;
 	}
 }
@@ -123,7 +130,14 @@ void Enemy::LeftLaneChangeCheck(Vector3& pos)
 void Enemy::RightLaneChangeCheck(Vector3& pos)
 {
 	Vector3 rightpos = { worldTransform_.translation_.x + (1 * loadWidth),worldTransform_.translation_.y,worldTransform_.translation_.z };
-	if (rightpos.z += laneRadius <= pos.z) {
+	float radius = rightpos.z + 70;
+	float radius_ = rightpos.z - 60;
+	if (rightpos.x == pos.x) {
+		if (radius > pos.z && radius_ < pos.z) {
+			rightLaneChangeFlag_ = false;
+		}
+	}
+	else {
 		rightLaneChangeFlag_ = true;
 	}
 }
@@ -131,6 +145,11 @@ void Enemy::RightLaneChangeCheck(Vector3& pos)
 void Enemy::SetWouldTransform(WorldTransform worldTransform)
 {
 	worldTransform_ = worldTransform;
+}
+
+void Enemy::SetLeftLaneChangeFlag(bool leftLaneChangeFlag)
+{
+	leftLaneChangeFlag_ = leftLaneChangeFlag;
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection)

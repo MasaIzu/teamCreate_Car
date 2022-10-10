@@ -48,6 +48,8 @@ public:// メンバ関数
 	// セッター
 	void SetWouldTransform(WorldTransform worldTransform);
 
+	void SetLeftLaneChangeFlag(bool leftLaneChangeFlag);
+
 	// 描画処理関数
 	void Draw(const ViewProjection& viewProjection);
 
@@ -79,7 +81,7 @@ private:// メンバ変数
 
 	// 生きている時間
 	int lifeTimer = 0;
-	int lifeInterval = 6 * 60;
+	int lifeInterval = 5 * 60;
 
 	// 一つのレーンの幅
 	float loadWidth = 18.5f;
@@ -92,7 +94,7 @@ private:// メンバ変数
 	bool rightLaneChangeFlag_ = false;
 
 	// 車線変更を行う際の前のの車との判定をとる半径
-	float laneRadius = 3 * loadWidth;
+	float laneRadius = 8 * 10;
 
 	// 最初の位置を保存
 	Vector3 initPos;

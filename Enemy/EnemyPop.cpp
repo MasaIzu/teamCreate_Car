@@ -74,83 +74,97 @@ void EnemyPop::Update(Model* model)
 
 	// 敵の更新処理の呼び出し
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
-		enemy->Update();
 		for (std::unique_ptr<Enemy>& enemy2 : enemy1) {
 			// 自分自身とは判定とらないようにする処理
 			if (enemy->GetPos().x == enemy2->GetPos().x &&
 				enemy->GetPos().y == enemy2->GetPos().y &&
 				enemy->GetPos().z == enemy2->GetPos().z) {
-				break;
 			}
-			Vector3 pos = enemy2->GetPos();
+			else{
+				Vector3 pos = enemy2->GetPos();
 
-			// 一番左のレーンをチェック
-			enemy->Lane1ChangeCheck(pos);
+				// 一番左のレーンをチェック
+				enemy->Lane1ChangeCheck(pos);
 
-			// 一番右のレーンチェック
-			enemy->Lane5ChangeCheck(pos);
+				// 一番右のレーンチェック
+				enemy->Lane5ChangeCheck(pos);
 
-			// それ以外の時のチェック
-			if (enemy->lane1ChangeFlag() == false && enemy->lane5ChangeFlag() == false) {
-				enemy->LaneChangeCheck(pos);
-			}
-			
-			// 前に別の車がいたら右もしくは左に移動可能かチェックする
-			if (enemy->laneChangeFlag() == true) {
-				for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
-					// 自分自身とは判定とらないようにする処理
-					if (enemy->GetPos().x == enemy3->GetPos().x &&
-						enemy->GetPos().y == enemy3->GetPos().y &&
-						enemy->GetPos().z == enemy3->GetPos().z) {
-						break;
-					}
-					Vector3 pos = enemy3->GetPos();
-
-					// 左に移動可能かチェック
-					enemy->LeftLaneChangeCheck(pos);
-					if (enemy->leftLaneChangeFlag() == false) {
-						// 左が無理だった場合に右に移動可能かチェック
-						enemy->RightLaneChangeCheck(pos);
-						break;
-					}
-					break;
+				// それ以外の時のチェック
+				if (enemy->lane1ChangeFlag() == false && enemy->lane5ChangeFlag() == false) {
+					enemy->LaneChangeCheck(pos);
 				}
-			}
 
-			// 一番左の時右に移動可能かチェックする
-			if (enemy->lane1ChangeFlag() == true) {
-				for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
-					// 自分自身とは判定とらないようにする処理
-					if (enemy->GetPos().x == enemy3->GetPos().x &&
-						enemy->GetPos().y == enemy3->GetPos().y &&
-						enemy->GetPos().z == enemy3->GetPos().z) {
-						break;
+				// 前に別の車がいたら右もしくは左に移動可能かチェックする
+				if (enemy->laneChangeFlag() == true) {
+					if (enemy->leftLaneChangeFlag() == false && enemy->rightLaneChangeFlag() == false) {
+						for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
+							// 自分自身とは判定とらないようにする処理
+							if (enemy->GetPos().x == enemy3->GetPos().x &&
+								enemy->GetPos().y == enemy3->GetPos().y &&
+								enemy->GetPos().z == enemy3->GetPos().z) {
+							}
+							else {
+								Vector3 pos = enemy3->GetPos();
+
+								// 左に移動可能かチェック
+								if (enemy->rightLaneChangeFlag() == false) {
+									enemy->LeftLaneChangeCheck(pos);
+
+									if (enemy->leftLaneChangeFlag() == false) {
+										// 左が無理だった場合に右に移動可能かチェック
+										enemy->RightLaneChangeCheck(pos);
+
+										// 右が可能なら
+										if (enemy->rightLaneChangeFlag() == true) {
+											enemy->SetLeftLaneChangeFlag(false);
+										}
+										// どっちも無理だった場合処理を抜ける
+										if (enemy->rightLaneChangeFlag() == false) {
+											break;
+										}
+									}
+								}
+							}
+						}
 					}
-					Vector3 pos = enemy3->GetPos();
-
-					// 右に移動可能かチェック
-					enemy->RightLaneChangeCheck(pos);
-					break;
 				}
-			}
 
-			// 一番右の時左に移動可能かチェックする
-			if (enemy->lane5ChangeFlag() == true) {
-				for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
-					// 自分自身とは判定とらないようにする処理
-					if (enemy->GetPos().x == enemy3->GetPos().x &&
-						enemy->GetPos().y == enemy3->GetPos().y &&
-						enemy->GetPos().z == enemy3->GetPos().z) {
-						break;
+				// 一番左の時右に移動可能かチェックする
+				if (enemy->lane1ChangeFlag() == true) {
+					for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
+						// 自分自身とは判定とらないようにする処理
+						if (enemy->GetPos().x == enemy3->GetPos().x &&
+							enemy->GetPos().y == enemy3->GetPos().y &&
+							enemy->GetPos().z == enemy3->GetPos().z) {
+						}
+						else {
+							Vector3 pos = enemy3->GetPos();
+
+							// 右に移動可能かチェック
+							enemy->RightLaneChangeCheck(pos);
+						}
 					}
-					Vector3 pos = enemy3->GetPos();
+				}
 
-					// 左に移動可能かチェック
-					enemy->LeftLaneChangeCheck(pos);
-					break;
+				// 一番右の時左に移動可能かチェックする
+				if (enemy->lane5ChangeFlag() == true) {
+					for (std::unique_ptr<Enemy>& enemy3 : enemy1) {
+						// 自分自身とは判定とらないようにする処理
+						if (enemy->GetPos().x == enemy3->GetPos().x &&
+							enemy->GetPos().y == enemy3->GetPos().y &&
+							enemy->GetPos().z == enemy3->GetPos().z) {
+						}
+						else {
+							Vector3 pos = enemy3->GetPos();
+
+							// 左に移動可能かチェック
+							enemy->LeftLaneChangeCheck(pos);
+						}
+					}
 				}
 			}
 		}
+		enemy->Update();
 	}
 
 }
