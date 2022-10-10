@@ -35,3 +35,7 @@ bool collision::boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, 
 	}
 	return false;
 }
+
+void collision::Contact(int playerMove, Vector3 player, WorldTransform enemy)
+{
+}
