@@ -52,9 +52,36 @@ void Enemy::Update()
 	}
 }
 
-void Enemy::LaneChange(Vector3& pos)
+void Enemy::LaneChangeCheck(Vector3& pos)
 {
+	// ˆê”Ô‰E‘¤‚ÌƒŒ[ƒ“‚É‚¢‚½ê‡‚ÌŽÔü•ÏX
+	if (worldTransform_.translation_.x >= 2 * loadWidth) {
+		if (worldTransform_.translation_.z += laneRadius <= pos.z) {
+			//float leftpos = worldTransform_.translation_.x + (1 * loadWidth);
+			laneChangeFlag = true;
+		}
+	}
+}
 
+void Enemy::LeftLaneChangeCheck(Vector3& pos)
+{
+	Vector3 leftpos = { worldTransform_.translation_.x - (1 * loadWidth),worldTransform_.translation_.y,worldTransform_.translation_.z };
+	if (leftpos.z += laneRadius <= pos.z) {
+		leftLaneChangeFlag = true;
+	}
+}
+
+void Enemy::RightLaneChangeCheck(Vector3& pos)
+{
+	Vector3 rightpos = { worldTransform_.translation_.x + (1 * loadWidth),worldTransform_.translation_.y,worldTransform_.translation_.z };
+	if (rightpos.z += laneRadius <= pos.z) {
+		rightLaneChangeFlag = true;
+	}
+}
+
+void Enemy::SetWouldTransform(WorldTransform worldTransform)
+{
+	worldTransform_ = worldTransform;
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection)

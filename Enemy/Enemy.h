@@ -21,7 +21,17 @@ public:// メンバ関数
 	void Update();
 
 	// 車線変更処理関数
-	void LaneChange(Vector3& pos);
+	void LaneChangeCheck(Vector3& pos);
+
+	void LeftLaneChangeCheck(Vector3& pos);
+
+	void RightLaneChangeCheck(Vector3& pos);
+
+	// ポジションのゲッター
+	Vector3 GetPos() { return worldTransform_.translation_; }
+
+	// セッター
+	void SetWouldTransform(WorldTransform worldTransform);
 
 	// 描画処理関数
 	void Draw(const ViewProjection& viewProjection);
@@ -56,5 +66,15 @@ private:// メンバ変数
 	int lifeTimer = 0;
 	int lifeInterval = 6 * 60;
 
+	// 一つのレーンの幅
+	float loadWidth = 18.5f;
+
+	// 車線変更フラグ
+	bool laneChangeFlag = false;
+	bool leftLaneChangeFlag = false;
+	bool rightLaneChangeFlag = false;
+
+	// 車線変更を行う際の前のの車との判定をとる半径
+	float laneRadius = 2 * loadWidth;
 };
 

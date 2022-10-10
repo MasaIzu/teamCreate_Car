@@ -44,7 +44,7 @@ private:// メンバ変数
 	int popTimer = 0;
 	
 	// 敵のポップする間隔のタイマー
-	int popInterval = 3 * 60;
+	int popInterval = 2 * 60;
 
 
 };

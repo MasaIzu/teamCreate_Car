@@ -74,6 +74,7 @@ void EnemyPop::Update(Model* model)
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 		enemy->Update();
 	}
+
 }
 
 void EnemyPop::Draw(const ViewProjection& viewProjection)
