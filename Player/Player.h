@@ -6,6 +6,7 @@
 #include"Input.h"
 #include"Vector3.h"
 #include"Affin.h"
+#include"Collision.h"
 
 class Player {
 
@@ -29,6 +30,24 @@ public:
     void Draw(ViewProjection viewProjection_);
 
     /// <summary>
+    /// 動き更新
+    /// </summary>
+    void PlayerMove();
+
+    /// <summary>
+    /// 車の後ろにいた時の処理
+    /// </summary>
+    void EnemyCarBack();
+
+    /// <summary>
+    /// 車と車の衝突時処理
+    /// </summary>
+    void TrafficAccident();
+
+
+public://ゲッター
+
+    /// <summary>
     /// スピードゲッター
     /// </summary>
     float GetPlayerSpeed();
@@ -50,6 +69,7 @@ private:
     DebugText* debugText_ = nullptr;
     Input* input_ = nullptr;
     Model* model_ = nullptr;
+    collision* collision_ = nullptr;
 
 
     //メンバ変数
@@ -67,6 +87,8 @@ private:
     int rightFlag;
     int moving;
     float nextPos;
+
+    float enemyBackSpeed;
 
     float playerSideMove;
 

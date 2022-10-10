@@ -15,6 +15,7 @@ Player::Player() {
 	playerSideMove = 1.0;
 
 	moving = 0;
+	enemyBackSpeed = 0;
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -29,7 +30,7 @@ Player::Player() {
 	debugText_ = DebugText::GetInstance();
 
 	model_ = Model::Create();
-
+	collision_ = new collision();
 }
 
 Player::~Player() {
@@ -51,11 +52,21 @@ void Player::Initialize() {
 }
 
 void Player::Updata() {
+	PlayerMove();
+	EnemyCarBack();
+}
+
+void Player::Draw(ViewProjection viewProjection_) {
+
+	model_->Draw(worldTransform_, viewProjection_);
+
+}
+
+void Player::PlayerMove(){
 
 	//だんだんと動くスピードを上げる
 	if (playerSpeed < playerMaxAccelerator) {
 		playerSpeed += 0.05f;
-		kmH = playerSpeed * 25;
 	}
 	//スペース押されたらジャンプ
 	if (input_->TriggerKey(DIK_SPACE)) {
@@ -114,17 +125,28 @@ void Player::Updata() {
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
-		"speed:(%d,%f)", moving, worldTransform_.translation_.x);
+		"speed:(%f,%f)", playerSpeed, kmH);
 
 
 	//行列更新
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();
+
 }
 
-void Player::Draw(ViewProjection viewProjection_) {
+void Player::EnemyCarBack(){
 
-	model_->Draw(worldTransform_, viewProjection_);
+	if (enemyBackSpeed < 8) {
+		enemyBackSpeed += 0.005;
+	}
+	playerSpeed += enemyBackSpeed;
+	kmH = playerSpeed * 25;
+}
+
+void Player::TrafficAccident(){
+
+	enemyBackSpeed = 0;
+	playerSpeed -= 4;
 
 }
 
