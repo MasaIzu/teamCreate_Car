@@ -14,6 +14,7 @@ public:
     //プレイヤーの半径をx,y,zの順に入れる
     //エネミーの半径をx,y,zの順に入れる
     bool boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, float playerWidthZ, float playerHight, float enemyWidthX, float enemyWidthZ, float enemyHight);
+    bool boxCollision(Vector3 player, Vector3 enemy, float playerWidthX, float playerWidthZ, float playerHight, float enemyWidthX, float enemyWidthZ, float enemyHight,bool flag);
 
     void Contact(int playerMove ,Vector3 player,WorldTransform enemy);
 private:
