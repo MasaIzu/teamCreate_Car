@@ -13,6 +13,7 @@
 #include "DebugCamera.h"
 #include "EnemyPop.h"
 #include "Load.h"
+#include "Enemy.h"
 
 /// <summary>
 /// ゲームシーン
@@ -63,7 +64,7 @@ class GameScene {
 	EnemyPop* enemyPop_ = nullptr;
 
 	DebugCamera* debugCamera_ = nullptr;
-
+	Enemy* enemy_ = nullptr;
 
 	//道路
 	Model* loadModel_ = nullptr;

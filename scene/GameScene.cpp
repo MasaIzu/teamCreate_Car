@@ -22,6 +22,7 @@ void GameScene::Initialize() {
 
 	// 敵の生成のnew
 	enemyPop_ = new EnemyPop();
+	enemy_ = new Enemy();
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -43,9 +44,9 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	debugCamera_->Update();
 
-	player_->Updata();
-	enemyPop_->Update(model_);
 	
+	enemyPop_->Update(model_);
+	player_->Updata();
 	
 	
 

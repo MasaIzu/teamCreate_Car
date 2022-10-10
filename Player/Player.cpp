@@ -3,7 +3,7 @@
 Player::Player() {
 	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
-	playerMaxAccelerator = 16.0f;
+	playerMaxAccelerator = 8.0f;
 	jumpFlag = 0;
 	kmH = 0;
 	gravity = 6.0f;
@@ -14,6 +14,8 @@ Player::Player() {
 	nextPos = 0;
 	playerSideMove = 1.0;
 
+	moving = 0;
+	enemyBackSpeed = 0;
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -28,7 +30,7 @@ Player::Player() {
 	debugText_ = DebugText::GetInstance();
 
 	model_ = Model::Create();
-
+	collision_ = new collision();
 }
 
 Player::~Player() {
@@ -50,11 +52,21 @@ void Player::Initialize() {
 }
 
 void Player::Updata() {
+	PlayerMove();
+	EnemyCarBack();
+}
+
+void Player::Draw(ViewProjection viewProjection_) {
+
+	model_->Draw(worldTransform_, viewProjection_);
+
+}
+
+void Player::PlayerMove(){
 
 	//だんだんと動くスピードを上げる
 	if (playerSpeed < playerMaxAccelerator) {
 		playerSpeed += 0.05f;
-		kmH = playerSpeed * 25;
 	}
 	//スペース押されたらジャンプ
 	if (input_->TriggerKey(DIK_SPACE)) {
@@ -79,42 +91,62 @@ void Player::Updata() {
 	//車線変更 左
 	if (jumpFlag == 0) {
 		if (input_->TriggerKey(DIK_LEFT)) {
+			moving = -1;
 			if (nextPos > -37) {
 				nextPos -= 18.5;
 			}
 		}
 		//車線変更 右
 		if (input_->TriggerKey(DIK_RIGHT)) {
+			moving = 1;
 			if (nextPos < 37) {
 				nextPos += 18.5;
 			}
 		}
 	}
 	//横移動
-	if (worldTransform_.translation_.x > nextPos) {
-		worldTransform_.translation_.x -= playerSideMove;
+	int nowMoving = 0;
+	if (moving == -1) {
+		if (worldTransform_.translation_.x > nextPos) {
+			worldTransform_.translation_.x -= playerSideMove;
+			nowMoving = -1;
+		}
 	}
-	if (worldTransform_.translation_.x < nextPos) {
-		worldTransform_.translation_.x += playerSideMove;
+	else if (moving == 1) {
+		if (worldTransform_.translation_.x < nextPos) {
+			worldTransform_.translation_.x += playerSideMove;
+			nowMoving = 1;
+		}
 	}
 
-
+	moving = nowMoving;
 
 
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
-		"speed:(%f,%f)", nextPos, worldTransform_.translation_.x);
+		"speed:(%f,%f)", playerSpeed, kmH);
 
 
 	//行列更新
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();
+
 }
 
-void Player::Draw(ViewProjection viewProjection_) {
+void Player::EnemyCarBack(){
 
-	model_->Draw(worldTransform_, viewProjection_);
+	if (enemyBackSpeed < 8) {
+		enemyBackSpeed += 0.005;
+	}
+	playerSpeed += enemyBackSpeed;
+	kmH = playerSpeed * 25;
+}
+
+void Player::TrafficAccident(){
+
+	enemyBackSpeed = 0;
+	playerSpeed -= 4;
 
 }
 
@@ -124,4 +156,9 @@ float Player::GetPlayerSpeed() {
 
 float Player::GetKmH() {
 	return kmH;
+}
+
+int Player::GetMovingFlag()
+{
+	return moving;
 }
