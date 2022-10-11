@@ -5,6 +5,8 @@
 EnemyPop::EnemyPop(){
 
 	collision_ = new collision();
+	TrafficAccidentFlag = 0;
+	debugText_ = DebugText::GetInstance();
 
 }
 
@@ -177,6 +179,12 @@ void EnemyPop::Update(Model* model)
 
 
 	CarBack();
+	TrafficAccidentEnemyVer();
+
+	debugText_->SetPos(50, 90);
+	debugText_->Printf(
+		"(%d)", TrafficAccidentFlag);
+
 }
 
 void EnemyPop::Draw(const ViewProjection& viewProjection)
@@ -190,14 +198,30 @@ void EnemyPop::Draw(const ViewProjection& viewProjection)
 void EnemyPop::CarBack(){
 
 	Vector3 PlayerVec = player_->GetPlayerPos();
-	Vector3 size = { 5,5,5 };
+	Vector3 Psize = { 5,5,250 };
+	Vector3 Esize = { 5,5,5 };
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 
 		Vector3 enemyPos_ = enemy->GetWorldTransform().translation_;
-		if (collision_->boxCollision(PlayerVec, enemyPos_, size, size, true)== true) {
+		if (collision_->boxCollision(PlayerVec, enemyPos_, Psize, Esize, true)== true) {
 			player_->EnemyCarBack();
 		}
 	}
+}
+
+void EnemyPop::TrafficAccidentEnemyVer(){
+
+	Vector3 PlayerVec = player_->GetPlayerPos();
+	Vector3 Psize = { 5,5,5 };
+	Vector3 Esize = { 5,5,5 };
+	for (std::unique_ptr<Enemy>& enemy : enemy1) {
+
+		Vector3 enemyPos_ = enemy->GetWorldTransform().translation_;
+		if (collision_->boxCollision(PlayerVec, enemyPos_, Psize, Esize) == true) {
+			TrafficAccidentFlag = 1;
+		}
+	}
+
 }
 
 void EnemyPop::CarModelLottery()

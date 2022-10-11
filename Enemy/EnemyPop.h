@@ -3,6 +3,7 @@
 #include <list>
 #include "Enemy.h"
 #include "Collision.h"
+#include"DebugText.h"
 
 //自機クラスの前方宣言
 class Player;
@@ -22,6 +23,10 @@ public:// メンバ関数
 	//当たり判定(車の後ろにいる時)
 	void CarBack();
 
+	//当たり判定(交通事故)
+	void TrafficAccidentEnemyVer();
+
+
 public://セッター
 	void  SetPlayer(Player* player) { player_ = player; }
 
@@ -33,6 +38,8 @@ private:// メンバ変数
 	// 敵の生成パターンのリスト
 	std::list<std::unique_ptr<Enemy>> enemy1;
 	std::list<std::unique_ptr<Enemy>> enemy2;
+
+	DebugText* debugText_ = nullptr;
 
 	//自キャラ
 	Player* player_ = nullptr;
@@ -65,6 +72,6 @@ private:// メンバ変数
 	// 敵のポップする間隔のタイマー
 	int popInterval = 2 * 60;
 
-
+	int TrafficAccidentFlag;
 };
 
