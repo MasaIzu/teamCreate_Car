@@ -45,6 +45,8 @@ void GameScene::Update() {
 	debugCamera_->Update();
 
 	player_->Updata();
+
+	enemyPop_->SetPlayer(player_);
 	enemyPop_->Update(model_);
 	
 
