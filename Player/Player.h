@@ -50,6 +50,11 @@ public://ゲッター
     /// <summary>
     /// スピードゲッター
     /// </summary>
+    Vector3 GetPlayerPos();
+
+    /// <summary>
+    /// スピードゲッター
+    /// </summary>
     float GetPlayerSpeed();
 
     /// <summary>

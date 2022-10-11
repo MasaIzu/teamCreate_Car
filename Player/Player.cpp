@@ -19,7 +19,7 @@ Player::Player() {
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = { -1, 0, 0 };
+	worldTransform_.translation_ = { 0, 0, 0 };
 	worldTransform_.scale_ = { 5,5,5 };
 	
 	//行列更新
@@ -120,7 +120,7 @@ void Player::PlayerMove(){
 
 	moving = nowMoving;
 
-
+	kmH = playerSpeed * 25;
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
@@ -135,18 +135,27 @@ void Player::PlayerMove(){
 
 void Player::EnemyCarBack(){
 
-	if (enemyBackSpeed < 8) {
-		enemyBackSpeed += 0.005;
+	if (enemyBackSpeed < 16) {
+		playerSpeed += 0.005;
 	}
-	playerSpeed += enemyBackSpeed;
-	kmH = playerSpeed * 25;
 }
 
 void Player::TrafficAccident(){
+	playerSpeed = 8;
+	playerSpeed -= 5;
 
-	enemyBackSpeed = 0;
-	playerSpeed -= 4;
+}
 
+Vector3 Player::GetPlayerPos(){
+
+	//ワールド座標を入れる変数
+	Vector3 worldPos;
+	//ワールド行列移動成分を取得(ワールド座標)
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+
+	return worldPos;
 }
 
 float Player::GetPlayerSpeed() {

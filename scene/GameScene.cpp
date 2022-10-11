@@ -47,16 +47,6 @@ void GameScene::Update() {
 	
 	enemyPop_->Update(model_);
 	player_->Updata();
-	
-	////敵リストの取得
-	//const std::list<std::unique_ptr<Enemy>>& enemylist = enemyPop_->GetEnemyList();
-	////自キャラと敵の当たり判定(前に敵がいるか)
-	//for (const std::unique_ptr<Enemy>& enemyPosition : enemylist) {
-	//	
-
-
-	//}
-	/*if (cali_->boxCollision());*/
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
