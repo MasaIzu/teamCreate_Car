@@ -3,6 +3,8 @@
 #include "WorldTransform.h"
 #include "Affin.h"
 #include <cassert>
+#include "collision.h"
+#include "Player.h"
 
 enum class CarModel {
 	truck,// トラック（遅い車）
@@ -59,6 +61,10 @@ public:// メンバ関数
 	// 死亡フラグを渡す
 	bool IsDead() const { return isDead_; }
 
+	//フラグ勃起
+	void ContactPlayer();
+	bool ContactFlag() { return contactFlag; }
+
 private:// メンバ変数
 
 	// ワールド変換データ
@@ -101,5 +107,11 @@ private:// メンバ変数
 
 	// 最初の位置を保存
 	Vector3 initPos;
+
+	//当たった判定フラグ
+	bool contactFlag = false;
+
+	collision* collision_ = nullptr;
+	Player* player_ = nullptr;
 };
 

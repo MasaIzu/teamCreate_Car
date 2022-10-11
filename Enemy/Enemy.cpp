@@ -62,6 +62,8 @@ void Enemy::Update()
 		}
 	}
 
+	ContactPlayer();
+
 	// s—ñ‚ðŒvŽZ‚µ“]‘—
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();
@@ -156,5 +158,17 @@ void Enemy::Draw(const ViewProjection& viewProjection)
 {
 	//if (isDead_ == false) {
 		model_->Draw(worldTransform_, viewProjection);
+	//}
+}
+
+void Enemy::ContactPlayer()
+{
+	//if (player_->GetPlayerPos() != NULL) {
+	//	if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(1, 1, 1), Vector3(1, 1, 1))) {
+	//		contactFlag = true;
+	//	}
+	//}
+	//if (contactFlag == true) {
+	//	worldTransform_.rotation_ += {1, 0, 1};
 	//}
 }
