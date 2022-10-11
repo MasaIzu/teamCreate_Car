@@ -2,6 +2,10 @@
 #include <memory.h>
 #include <list>
 #include "Enemy.h"
+
+//自機クラスの前方宣言
+class Player;
+
 class EnemyPop
 {
 public:// メンバ関数
@@ -12,7 +16,8 @@ public:// メンバ関数
 	// 描画処理
 	void Draw(const ViewProjection& viewProjection);
 
-	//std::list<std::unique_ptr<Enemy>> GetEnemyList() { return enemy1; }
+	//当たり判定(車の後ろにいる時)
+	void CarBack();
 
 private:
 	// 車種のパターンを抽選する関数
@@ -22,6 +27,9 @@ private:// メンバ変数
 	// 敵の生成パターンのリスト
 	std::list<std::unique_ptr<Enemy>> enemy1;
 	std::list<std::unique_ptr<Enemy>> enemy2;
+
+	//自キャラ
+	Player* player_ = nullptr;
 	
 	// 一つのレーンの幅
 	float loadWidth = 18.5f;

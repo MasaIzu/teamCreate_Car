@@ -1,5 +1,7 @@
 #include "EnemyPop.h"
 #include <stdlib.h>
+#include"Player.h"
+
 void EnemyPop::Update(Model* model)
 {
 	popTimer++;
@@ -175,6 +177,12 @@ void EnemyPop::Draw(const ViewProjection& viewProjection)
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 		enemy->Draw(viewProjection);
 	}
+}
+
+void EnemyPop::CarBack(){
+
+
+
 }
 
 void EnemyPop::CarModelLottery()
