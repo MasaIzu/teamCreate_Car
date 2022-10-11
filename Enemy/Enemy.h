@@ -34,6 +34,9 @@ public:// メンバ関数
 	// ポジションのゲッター
 	Vector3 GetPos() { return worldTransform_.translation_; }
 
+	// ワールドトランスフォームのゲッター
+	WorldTransform GetWorldTransform() { return worldTransform_; }
+
 	// 車線変更フラグのゲッター
 	bool laneChangeFlag() const { return laneChangeFlag_; }
 
