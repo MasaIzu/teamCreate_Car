@@ -88,9 +88,6 @@ void GameScene::Draw() {
 	// 敵の描画
 	enemyPop_->Draw(viewProjection_);
 
-	if (cali_->boxCollision(player_->GetPlayerPos(), enemy_->GetPos(), Vector3(0, 0, 0), Vector3(0, 0, 0))) {
-		cali_->Contact(player_->GetMovingFlag(), player_->GetPlayerPos(), enemy_->GetWorldTransform(), Vector3(1, 0, 1), Vector3(0, 0, 0));
-	}
 
 	//道路描画
 	load_->Draw(viewProjection_);
