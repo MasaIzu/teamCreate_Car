@@ -212,16 +212,24 @@ void EnemyPop::CarBack(){
 void EnemyPop::TrafficAccidentEnemyVer(){
 
 	Vector3 PlayerVec = player_->GetPlayerPos();
-	Vector3 Psize = { 5,5,5 };
+	Vector3 Psize = { 5,5,10 };
 	Vector3 Esize = { 5,5,5 };
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 
 		Vector3 enemyPos_ = enemy->GetWorldTransform().translation_;
-		if (collision_->boxCollision(PlayerVec, enemyPos_, Psize, Esize) == true) {
+		if (collision_->boxCollision(PlayerVec, enemyPos_, Psize, Esize,true) == true) {
 			TrafficAccidentFlag = 1;
 		}
+		/*else {
+			TrafficAccidentFlag = 0;
+		}*/
 	}
 
+}
+
+int EnemyPop::GetTrafficAccidentFlag(){
+
+	return TrafficAccidentFlag;
 }
 
 void EnemyPop::CarModelLottery()

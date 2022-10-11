@@ -27,7 +27,9 @@ public:// メンバ関数
 	void TrafficAccidentEnemyVer();
 
 
-public://セッター
+public://ゲッターセッター
+
+	int GetTrafficAccidentFlag();
 	void  SetPlayer(Player* player) { player_ = player; }
 
 private:
