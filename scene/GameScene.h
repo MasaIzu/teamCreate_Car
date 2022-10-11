@@ -14,6 +14,7 @@
 #include "EnemyPop.h"
 #include "Load.h"
 #include "Enemy.h"
+#include "Collision.h"
 
 /// <summary>
 /// ゲームシーン
@@ -69,6 +70,10 @@ class GameScene {
 	//道路
 	Model* loadModel_ = nullptr;
 	Load* load_ = nullptr;
+
+	//当たり判定
+	collision* cali_ = nullptr;
+
 
 	/// <summary>
 	/// ゲームシーン用

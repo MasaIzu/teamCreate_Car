@@ -56,7 +56,7 @@ void GameScene::Update() {
 
 
 	//}
-	
+	/*if (cali_->boxCollision());*/
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
