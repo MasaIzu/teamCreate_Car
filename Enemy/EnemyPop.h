@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <list>
 #include "Enemy.h"
+#include "Collision.h"
 
 //自機クラスの前方宣言
 class Player;
@@ -9,6 +10,8 @@ class Player;
 class EnemyPop
 {
 public:// メンバ関数
+
+	EnemyPop();
 
 	// 更新処理
 	void Update(Model* model);
@@ -18,6 +21,9 @@ public:// メンバ関数
 
 	//当たり判定(車の後ろにいる時)
 	void CarBack();
+
+public://セッター
+	void  SetPlayer(Player* player) { player_ = player; }
 
 private:
 	// 車種のパターンを抽選する関数
@@ -30,6 +36,8 @@ private:// メンバ変数
 
 	//自キャラ
 	Player* player_ = nullptr;
+	collision* collision_ = nullptr;
+
 	
 	// 一つのレーンの幅
 	float loadWidth = 18.5f;

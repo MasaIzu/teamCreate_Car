@@ -67,6 +67,7 @@ public://ゲッター
     /// </summary>
     int GetMovingFlag();
 
+
 private:
     //ワールド変換データ
     WorldTransform worldTransform_;

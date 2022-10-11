@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include"Player.h"
 
+EnemyPop::EnemyPop(){
+
+	collision_ = new collision();
+
+}
+
 void EnemyPop::Update(Model* model)
 {
 	popTimer++;
@@ -169,6 +175,8 @@ void EnemyPop::Update(Model* model)
 		enemy->Update();
 	}
 
+
+	CarBack();
 }
 
 void EnemyPop::Draw(const ViewProjection& viewProjection)
@@ -181,8 +189,15 @@ void EnemyPop::Draw(const ViewProjection& viewProjection)
 
 void EnemyPop::CarBack(){
 
+	Vector3 PlayerVec = player_->GetPlayerPos();
+	Vector3 size = { 5,5,5 };
+	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 
-
+		Vector3 enemyPos_ = enemy->GetWorldTransform().translation_;
+		if (collision_->boxCollision(PlayerVec, enemyPos_, size, size, true)== true) {
+			player_->EnemyCarBack();
+		}
+	}
 }
 
 void EnemyPop::CarModelLottery()
