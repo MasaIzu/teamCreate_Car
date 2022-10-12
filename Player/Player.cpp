@@ -17,6 +17,7 @@ Player::Player() {
 	moving = 0;
 	enemyBackSpeed = 0;
 	timer = 180;
+	accidentFlag = 0;
 
 	//ƒ[ƒ‹ƒh•ÏŠ·‚Ì‰Šú‰»
 	worldTransform_.Initialize();
@@ -146,9 +147,18 @@ void Player::EnemyCarBack(){
 }
 
 void Player::TrafficAccident(){
-	playerSpeed = 8;
-	playerSpeed -= 5;
+	if (accidentFlag == 1) {
+		if (playerSpeed > 2) {
+			playerSpeed -= 0.5;
+		}
+		else {
+			accidentFlag = 0;
+		}
+	}
+}
 
+void Player::TrafficAccidentFlag(){
+	accidentFlag = 1;
 }
 
 void Player::countDown(){
