@@ -116,4 +116,9 @@ private:
     int timer;
     int accidentFlag;
 
+    float saveSpeed;
+    int saveSpeedFlag;
+
+    int speedTimer;
+
 };
