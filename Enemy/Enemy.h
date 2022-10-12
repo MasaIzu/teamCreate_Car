@@ -12,18 +12,21 @@ enum class CarModel {
 	ferrari,// フェラーリ（速い車）
 };
 
+//自機クラスの前方宣言
+class Player;
+
 class Enemy
 {
 public:// メンバ関数
 
 	// 初期化処理関数
-	void Initialize(Model* model ,Vector3& pos, CarModel carModel);
+	void Initialize(Model* model, Vector3& pos, CarModel carModel);
 
 	// 更新処理関数
 	void Update();
 
 	// 車線変更処理関数
-	void Lane1ChangeCheck(Vector3 & pos);
+	void Lane1ChangeCheck(Vector3& pos);
 
 	void Lane5ChangeCheck(Vector3& pos);
 
@@ -54,6 +57,8 @@ public:// メンバ関数
 	void SetWouldTransform(WorldTransform worldTransform);
 
 	void SetLeftLaneChangeFlag(bool leftLaneChangeFlag);
+
+	void  SetPlayer(Player* player) { player_ = player; }
 
 	// 描画処理関数
 	void Draw(const ViewProjection& viewProjection);
@@ -110,6 +115,16 @@ private:// メンバ変数
 
 	//当たった判定フラグ
 	bool contactFlag = false;
+
+	//まっすぐに当たった場合
+	bool contactVer0 = false;
+	int fukitobiTimeMax = 60;
+	int fukitobiTime = 0;
+
+	//右移動中に当たった場合
+	bool contactVer1 = false;
+	//左移動中に当たった場合
+	bool contactVer2 = false;
 
 	collision* collision_ = nullptr;
 	Player* player_ = nullptr;

@@ -1,6 +1,8 @@
 #include "Enemy.h"
+#include "Player.h"
 
-void Enemy::Initialize(Model* model ,Vector3& pos, CarModel carModel)
+
+void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 {
 	// NULLポインタチェック
 	assert(model);
@@ -107,11 +109,11 @@ void Enemy::LaneChangeCheck(Vector3& pos)
 	Vector3 pos_ = worldTransform_.translation_;
 	float radius = pos_.z + laneRadius;
 	if (pos_.x == pos.x) {
-		if (pos_.z < pos.z && radius > pos.z ) {
+		if (pos_.z < pos.z && radius > pos.z) {
 			laneChangeFlag_ = true;
 		}
 	}
-	
+
 }
 
 void Enemy::LeftLaneChangeCheck(Vector3& pos)
@@ -157,18 +159,62 @@ void Enemy::SetLeftLaneChangeFlag(bool leftLaneChangeFlag)
 void Enemy::Draw(const ViewProjection& viewProjection)
 {
 	//if (isDead_ == false) {
-		model_->Draw(worldTransform_, viewProjection);
+	model_->Draw(worldTransform_, viewProjection);
 	//}
 }
 
 void Enemy::ContactPlayer()
 {
-	//if (player_->GetPlayerPos() != NULL) {
-	//	if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(1, 1, 1), Vector3(1, 1, 1))) {
-	//		contactFlag = true;
-	//	}
-	//}
-	//if (contactFlag == true) {
-	//	worldTransform_.rotation_ += {1, 0, 1};
-	//}
+	if (contactFlag == false) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 5, 5), Vector3(5, 5, 5))) {
+			if (player_->GetMovingFlag() == 0) {
+				fukitobiTime = fukitobiTimeMax;
+				contactVer0 = true;
+				contactFlag = true;
+			}
+		}
+	}
+	if (contactFlag == false) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 5, 5), Vector3(5, 5, 5))) {
+			if (player_->GetMovingFlag() == 1) {
+				contactVer1 = true;
+			}
+			else if (player_->GetMovingFlag() == -1) {
+				contactVer2 = true;
+			}
+			contactFlag = true;
+		}
+	}
+	
+	if (contactVer0 == true) {
+		fukitobiTime--;
+		moveSpeed_ = { 0,0,-4 };
+		if (fukitobiTime <= 0) {
+			contactVer0 = false;
+			contactFlag = false;
+			// 車種ごとのスピードを設定
+			switch (carModel_)
+			{
+			case CarModel::truck:
+				moveSpeed_ = { 0.0f,0.0f, 3.0f };
+				break;
+			case CarModel::prius:
+				moveSpeed_ = { 0.0f,0.0f, 2.0f };
+				break;
+			case CarModel::ferrari:
+				moveSpeed_ = { 0.0f,0.0f, 1.5f };
+				break;
+			default:
+				break;
+			}
+
+		}
+	}
+
+	if (contactVer1 == true) {
+		worldTransform_.rotation_ += {0, 0.5, 0};
+	}
+	if (contactVer2 == true) {
+		worldTransform_.rotation_ -= {0, 0.5, 0};
+	}
 }

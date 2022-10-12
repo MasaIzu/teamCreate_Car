@@ -13,7 +13,7 @@ EnemyPop::EnemyPop(){
 void EnemyPop::Update(Model* model)
 {
 	popTimer++;
-
+	
 	// 敵のデスフラグが立っていたらリストから消す
 	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
 
@@ -31,6 +31,7 @@ void EnemyPop::Update(Model* model)
 
 				// 敵を生成し、初期化
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
+				newEnemy->SetPlayer(player_);
 				newEnemy->Initialize(model, enemyPos1[i],carModel_);
 
 				// 敵をリストに登録
@@ -49,6 +50,7 @@ void EnemyPop::Update(Model* model)
 
 				// 敵を生成し、初期化
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
+				newEnemy->SetPlayer(player_);
 				newEnemy->Initialize(model, enemyPos2[i], carModel_);
 
 				// 敵をリストに登録
@@ -66,6 +68,7 @@ void EnemyPop::Update(Model* model)
 
 				// 敵を生成し、初期化
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
+				newEnemy->SetPlayer(player_);
 				newEnemy->Initialize(model, enemyPos3[i], carModel_);
 
 				// 敵をリストに登録
