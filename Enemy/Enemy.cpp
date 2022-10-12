@@ -23,13 +23,13 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
-		moveSpeed_ = { 0.0f,0.0f, 3.0f };
+		moveSpeed_ = { 0.0f,0.0f, 0.8f };
 		break;
 	case CarModel::prius:
-		moveSpeed_ = { 0.0f,0.0f, 2.0f };
+		moveSpeed_ = { 0.0f,0.0f, 0.6f };
 		break;
 	case CarModel::ferrari:
-		moveSpeed_ = { 0.0f,0.0f, 1.5f };
+		moveSpeed_ = { 0.0f,0.0f, 0.5f };
 		break;
 	default:
 		break;
@@ -42,7 +42,7 @@ void Enemy::Update()
 	lifeTimer++;
 
 	//前に進む処理
-	worldTransform_.translation_ -= moveSpeed_;
+	worldTransform_.translation_ -= moveSpeed_ * player_->GetPlayerSpeed();
 
 	// 左車線に移動可能だったら、一レーン移動させる
 	if (leftLaneChangeFlag_ == true) {
@@ -71,7 +71,7 @@ void Enemy::Update()
 	worldTransform_.TransferMatrix();
 
 	// 生きている時間が限界に達したら消す
-	if (lifeTimer >= lifeInterval) {
+	if (worldTransform_.translation_.z <= -60) {
 		isDead_ = true;
 	}
 }
@@ -188,7 +188,7 @@ void Enemy::ContactPlayer()
 	
 	if (contactVer0 == true) {
 		fukitobiTime--;
-		moveSpeed_ = { 0,0,-4 };
+		moveSpeed_ = { 0,0,-0.5 };
 		if (fukitobiTime <= 0) {
 			contactVer0 = false;
 			contactFlag = false;
@@ -196,13 +196,13 @@ void Enemy::ContactPlayer()
 			switch (carModel_)
 			{
 			case CarModel::truck:
-				moveSpeed_ = { 0.0f,0.0f, 3.0f };
+				moveSpeed_ = { 0.0f,0.0f, 0.8f };
 				break;
 			case CarModel::prius:
-				moveSpeed_ = { 0.0f,0.0f, 2.0f };
+				moveSpeed_ = { 0.0f,0.0f, 0.6f };
 				break;
 			case CarModel::ferrari:
-				moveSpeed_ = { 0.0f,0.0f, 1.5f };
+				moveSpeed_ = { 0.0f,0.0f, 0.5f };
 				break;
 			default:
 				break;

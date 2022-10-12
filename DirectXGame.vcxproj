@@ -107,6 +107,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\Affin.cpp" />
     <ClCompile Include="math\Matrix4.cpp" />
+    <ClCompile Include="math\Vector3.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
   </ItemGroup>

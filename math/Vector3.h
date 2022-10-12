@@ -18,7 +18,8 @@ class Vector3 {
 	// 単項演算子オーバーロード
 	Vector3 operator+() const;
 	Vector3 operator-() const;
-
+	Vector3 operator*(const Vector3& v);
+	Vector3 operator*(float s);
 	// 代入演算子オーバーロード
 	Vector3& operator+=(const Vector3& v);
 	Vector3& operator-=(const Vector3& v);
