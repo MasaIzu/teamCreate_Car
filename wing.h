@@ -21,9 +21,15 @@ public:
 	/// </summary>
 	void Draw(ViewProjection viewProjection);
 
+	//判定
+	void Distance();
+
 private:
 	//ワールド変換データ
 	WorldTransform worldTransform_;
 	//モデル
 	Model* model_;
+	//時間とフラグ
+	bool make;
+	int time;
 };
