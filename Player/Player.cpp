@@ -16,10 +16,11 @@ Player::Player() {
 
 	moving = 0;
 	enemyBackSpeed = 0;
+	timer = 180;
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = { 0, 0, 0 };
+	worldTransform_.translation_ = { 0, 0, -50 };
 	worldTransform_.scale_ = { 5,5,5 };
 	
 	//行列更新
@@ -52,7 +53,11 @@ void Player::Initialize() {
 }
 
 void Player::Updata() {
-	PlayerMove();
+	countDown();
+	if (timer == 0) {
+		PlayerMove();
+	}
+	SpeedAccordingPosition();
 }
 
 void Player::Draw(ViewProjection viewProjection_) {
@@ -135,14 +140,26 @@ void Player::PlayerMove(){
 
 void Player::EnemyCarBack(){
 
-	if (enemyBackSpeed < 16) {
-		playerSpeed += 0.005;
+	if (playerSpeed < 16) {
+		playerSpeed += 0.01;
 	}
 }
 
 void Player::TrafficAccident(){
 	playerSpeed = 8;
 	playerSpeed -= 5;
+
+}
+
+void Player::countDown(){
+	if (timer > 0) {
+		timer--;
+	}
+}
+
+void Player::SpeedAccordingPosition(){
+	worldTransform_.translation_ = { worldTransform_.translation_.x, worldTransform_.translation_.y, -55 };
+	worldTransform_.translation_.z +=  playerSpeed * 5;
 
 }
 

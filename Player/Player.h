@@ -44,6 +44,17 @@ public:
     /// </summary>
     void TrafficAccident();
 
+    /// <summary>
+    /// 始まった時のカウントダウン
+    /// </summary>
+    void countDown();
+
+    /// <summary>
+    /// スピードによる位置調整
+    /// </summary>
+    void SpeedAccordingPosition();
+
+
 
 public://ゲッター
 
@@ -97,6 +108,6 @@ private:
     float enemyBackSpeed;
 
     float playerSideMove;
-
+    int timer;
 
 };
