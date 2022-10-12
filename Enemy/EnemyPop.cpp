@@ -18,6 +18,8 @@ void EnemyPop::Update(Model* model)
 	// 敵のデスフラグが立っていたらリストから消す
 	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
 
+	// プレイヤーのスピードに応じて敵のポップの間隔を上げる
+	popInterval = 2 * 60 - (5 * player_->GetPlayerSpeed());
 
 	// タイマーが間隔時間になったらランダムに生成と車種を抽選して、設定する
 	if (popTimer >= popInterval){
@@ -202,7 +204,7 @@ void EnemyPop::Draw(const ViewProjection& viewProjection)
 void EnemyPop::CarBack(){
 
 	Vector3 PlayerVec = player_->GetPlayerPos();
-	Vector3 Psize = { 5,5,250 };
+	Vector3 Psize = { 5,5,300 };
 	Vector3 Esize = { 5,5,5 };
 	for (std::unique_ptr<Enemy>& enemy : enemy1) {
 

@@ -23,7 +23,7 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
-		moveSpeed_ = { 0.0f,0.0f, 0.8f };
+		moveSpeed_ = { 0.0f,0.0f, 0.7f };
 		break;
 	case CarModel::prius:
 		moveSpeed_ = { 0.0f,0.0f, 0.6f };
@@ -188,7 +188,7 @@ void Enemy::ContactPlayer()
 	
 	if (contactVer0 == true) {
 		fukitobiTime--;
-		moveSpeed_ = { 0,0,-0.5 };
+		moveSpeed_ = { 0,0,-0.7f };
 		if (fukitobiTime <= 0) {
 			contactVer0 = false;
 			contactFlag = false;
@@ -196,13 +196,13 @@ void Enemy::ContactPlayer()
 			switch (carModel_)
 			{
 			case CarModel::truck:
-				moveSpeed_ = { 0.0f,0.0f, 0.8f };
+				moveSpeed_ = { 0.0f,0.0f, 1.0f };
 				break;
 			case CarModel::prius:
-				moveSpeed_ = { 0.0f,0.0f, 0.6f };
+				moveSpeed_ = { 0.0f,0.0f, 0.8f };
 				break;
 			case CarModel::ferrari:
-				moveSpeed_ = { 0.0f,0.0f, 0.5f };
+				moveSpeed_ = { 0.0f,0.0f, 0.7f };
 				break;
 			default:
 				break;
