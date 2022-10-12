@@ -45,6 +45,11 @@ public:
     void TrafficAccident();
 
     /// <summary>
+    /// 車と車の衝突時処理(フラグ立て)
+    /// </summary>
+    void TrafficAccidentFlag();
+
+    /// <summary>
     /// 始まった時のカウントダウン
     /// </summary>
     void countDown();
@@ -109,5 +114,6 @@ private:
 
     float playerSideMove;
     int timer;
+    int accidentFlag;
 
 };
