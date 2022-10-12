@@ -8,6 +8,9 @@
 //自機クラスの前方宣言
 class Player;
 
+//風クラスの前方宣言
+class Wing;
+
 class EnemyPop
 {
 public:// メンバ関数
@@ -31,6 +34,7 @@ public://ゲッターセッター
 
 	int GetTrafficAccidentFlag();
 	void  SetPlayer(Player* player) { player_ = player; }
+	void SetWing(Wing* wing) { wing_ = wing; }
 
 private:
 	// 車種のパターンを抽選する関数
@@ -46,6 +50,9 @@ private:// メンバ変数
 	//自キャラ
 	Player* player_ = nullptr;
 	collision* collision_ = nullptr;
+
+	//風
+	Wing* wing_ = nullptr;
 
 	
 	// 一つのレーンの幅

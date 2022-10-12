@@ -1,6 +1,7 @@
 #include "EnemyPop.h"
 #include <stdlib.h>
 #include"Player.h"
+#include "wing.h"
 
 EnemyPop::EnemyPop(){
 
@@ -208,6 +209,7 @@ void EnemyPop::CarBack(){
 		Vector3 enemyPos_ = enemy->GetWorldTransform().translation_;
 		if (collision_->boxCollision(PlayerVec, enemyPos_, Psize, Esize, true)== true) {
 			player_->EnemyCarBack();
+			wing_->Distance();
 		}
 	}
 }

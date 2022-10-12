@@ -79,6 +79,12 @@
     <Filter Include="ヘッダー ファイル\Control">
       <UniqueIdentifier>{dffc35d9-b02d-47b8-981e-412d182a6f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\effect">
+      <UniqueIdentifier>{ea700222-0228-4531-8bb3-fdd820aa919e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\effect">
+      <UniqueIdentifier>{57dbf065-2805-4aad-9778-499ae699abf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="math\Vector3.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="wing.cpp">
+      <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="ErrorException.h">
       <Filter>ヘッダー ファイル\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="wing.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
