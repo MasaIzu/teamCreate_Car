@@ -71,7 +71,7 @@ void Enemy::Update()
 	worldTransform_.TransferMatrix();
 
 	// ¶‚«‚Ä‚¢‚éŠÔ‚ªŒÀŠE‚É’B‚µ‚½‚çÁ‚·
-	if (worldTransform_.translation_.z <= -60) {
+	if (worldTransform_.translation_.z <= -100) {
 		isDead_ = true;
 	}
 }
@@ -212,9 +212,11 @@ void Enemy::ContactPlayer()
 	}
 
 	if (contactVer1 == true) {
-		worldTransform_.rotation_ += {0, 0.5, 0};
+		worldTransform_.rotation_ += {0.5, 0.5, 0};
+		worldTransform_.translation_ += {1, 1, 0};
 	}
 	if (contactVer2 == true) {
-		worldTransform_.rotation_ -= {0, 0.5, 0};
+		worldTransform_.rotation_ -= {0.5, 0.5, 0};
+		worldTransform_.translation_ += {-1, 1, 0};
 	}
 }
