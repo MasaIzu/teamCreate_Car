@@ -67,6 +67,11 @@ public://ゲッター
     /// </summary>
     int GetMovingFlag();
 
+    /// <summary>
+    /// 座標取得
+    /// </summary>
+    Vector3 GetPos();
+
 
 private:
     //ワールド変換データ

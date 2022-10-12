@@ -170,3 +170,7 @@ int Player::GetMovingFlag()
 {
 	return moving;
 }
+
+Vector3 Player::GetPos() {
+	return worldTransform_.translation_;
+}

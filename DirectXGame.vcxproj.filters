@@ -79,6 +79,12 @@
     <Filter Include="ヘッダー ファイル\Control">
       <UniqueIdentifier>{dffc35d9-b02d-47b8-981e-412d182a6f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\effect">
+      <UniqueIdentifier>{688ed738-bbb0-4aa4-83d0-aebe944fff93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\effect">
+      <UniqueIdentifier>{17e72d0a-ffec-490e-ae4c-e7d808163252}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>ソース ファイル\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="wing.cpp">
+      <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="ErrorException.h">
       <Filter>ヘッダー ファイル\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="wing.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
