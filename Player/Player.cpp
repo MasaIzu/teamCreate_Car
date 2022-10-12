@@ -58,6 +58,7 @@ void Player::Updata() {
 	if (timer == 0) {
 		PlayerMove();
 	}
+	TrafficAccident();
 	SpeedAccordingPosition();
 }
 
@@ -130,7 +131,7 @@ void Player::PlayerMove(){
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
-		"speed:(%f,%f)", playerSpeed, kmH);
+		"speed:(%f,%d)", playerSpeed, accidentFlag);
 
 
 	//s—ñXV
