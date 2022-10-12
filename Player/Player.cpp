@@ -90,7 +90,7 @@ void Player::PlayerMove(){
 	if (jumpFlag == 1) {
 		//ジャンプフレーム
 		junpFrame++;
-		playerJumpSpeed = 1.2f - gravity * (static_cast<float>(junpFrame) / 120.0f);
+		playerJumpSpeed = 1.3f - gravity * (static_cast<float>(junpFrame) / 100.0f);
 		worldTransform_.translation_.y += playerJumpSpeed;
 	}
 
@@ -162,7 +162,7 @@ void Player::TrafficAccident(){
 			saveSpeedFlag = 1;
 			saveSpeed = 0;
 			if (playerSpeed > 8) {
-				saveSpeed = (playerSpeed - 8);
+				saveSpeed = (playerSpeed - 7);
 			}
 		}
 		if (playerSpeed > 2 + saveSpeed) {
