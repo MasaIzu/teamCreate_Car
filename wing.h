@@ -2,9 +2,9 @@
 #include "Model.h"
 #include "WorldTransform.h"
 ///<summary>
-///道路
+///風
 /// </summary>
-class Load {
+class Wing {
 public:
 	///<summary>
 	///初期化
@@ -14,7 +14,7 @@ public:
 	///<summary>
 	///更新
 	/// </summary>
-	void Update(float speed);
+	void Update(Vector3 pos);
 
 	///<summary>
 	///描画
@@ -23,9 +23,7 @@ public:
 
 private:
 	//ワールド変換データ
-	WorldTransform worldTransform_[15];
+	WorldTransform worldTransform_;
 	//モデル
 	Model* model_;
-
-	float speed_;
 };

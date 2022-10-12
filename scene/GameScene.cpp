@@ -36,6 +36,11 @@ void GameScene::Initialize() {
 	load_ = new Load();
 	load_->Initialize(loadModel_);
 
+	//風生成
+	//wingModel_ = Model::CreateFromOBJ("wing", true);
+	//wing_ = new Wing;
+	//wing_->Initialize(wingModel_);
+
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
 }
@@ -51,6 +56,9 @@ void GameScene::Update() {
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
+
+	//風更新
+	//wing_->Update(player_->GetWorld());
 
 }
 
@@ -89,6 +97,9 @@ void GameScene::Draw() {
 
 	//道路描画
 	load_->Draw(viewProjection_);
+
+	//風描画
+	//wing_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

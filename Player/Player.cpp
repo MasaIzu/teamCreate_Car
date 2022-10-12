@@ -123,3 +123,7 @@ float Player::GetPlayerSpeed() {
 float Player::GetKmH() {
 	return kmH;
 }
+
+Vector3 Player::GetWorld() {
+	return worldTransform_.translation_;
+}

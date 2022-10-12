@@ -38,6 +38,11 @@ public:
     /// </summary>
     float GetKmH();
 
+    /// <summary>
+    /// 座標のゲッター
+    /// </summary>
+    Vector3 GetWorld();
+
 
 private:
     //ワールド変換データ

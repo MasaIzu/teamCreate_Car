@@ -13,6 +13,7 @@
 #include "DebugCamera.h"
 #include "EnemyPop.h"
 #include "Load.h"
+//#include "wing.h"
 
 /// <summary>
 /// ゲームシーン
@@ -68,6 +69,10 @@ class GameScene {
 	//道路
 	Model* loadModel_ = nullptr;
 	Load* load_ = nullptr;
+
+	//風
+	//Model* wingModel_ = nullptr;
+	//Wing* wing_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用
