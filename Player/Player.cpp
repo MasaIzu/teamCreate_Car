@@ -3,7 +3,7 @@
 Player::Player() {
 	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
-	playerMaxAccelerator = 8.0f;
+	playerMaxAccelerator = 9.0f;
 	jumpFlag = 0;
 	kmH = 0;
 	gravity = 6.0f;
@@ -18,6 +18,10 @@ Player::Player() {
 	enemyBackSpeed = 0;
 	timer = 180;
 	accidentFlag = 0;
+
+	saveSpeed = 0;
+	saveSpeedFlag = 0;
+	speedTimer = 2;
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -71,9 +75,14 @@ void Player::Draw(ViewProjection viewProjection_) {
 void Player::PlayerMove(){
 
 	//だんだんと動くスピードを上げる
-	if (playerSpeed < playerMaxAccelerator) {
-		playerSpeed += 0.05f;
+	if (speedTimer == 0) {
+		if (playerSpeed < playerMaxAccelerator) {
+			playerSpeed += 0.05f;
+			speedTimer = 2;
+		}
 	}
+	
+	
 	//スペース押されたらジャンプ
 	if (input_->TriggerKey(DIK_SPACE)) {
 		jumpFlag = 1;
@@ -81,7 +90,7 @@ void Player::PlayerMove(){
 	if (jumpFlag == 1) {
 		//ジャンプフレーム
 		junpFrame++;
-		playerJumpSpeed = 1.5f - gravity * (static_cast<float>(junpFrame) / 120.0f);
+		playerJumpSpeed = 1.2f - gravity * (static_cast<float>(junpFrame) / 120.0f);
 		worldTransform_.translation_.y += playerJumpSpeed;
 	}
 
@@ -131,7 +140,7 @@ void Player::PlayerMove(){
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
-		"speed:(%f,%d)", playerSpeed, accidentFlag);
+		"speed:(%f,%f)", saveSpeed, playerSpeed);
 
 
 	//行列更新
@@ -143,17 +152,25 @@ void Player::PlayerMove(){
 void Player::EnemyCarBack(){
 
 	if (playerSpeed < 16) {
-		playerSpeed += 0.01;
+		playerSpeed += 0.016;
 	}
 }
 
 void Player::TrafficAccident(){
 	if (accidentFlag == 1) {
-		if (playerSpeed > 2) {
-			playerSpeed -= 0.5;
+		if (saveSpeedFlag == 0) {
+			saveSpeedFlag = 1;
+			saveSpeed = 0;
+			if (playerSpeed > 8) {
+				saveSpeed = (playerSpeed - 8);
+			}
+		}
+		if (playerSpeed > 2 + saveSpeed) {
+			playerSpeed -= 0.4;
 		}
 		else {
 			accidentFlag = 0;
+			saveSpeedFlag = 0;
 		}
 	}
 }
@@ -165,6 +182,9 @@ void Player::TrafficAccidentFlag(){
 void Player::countDown(){
 	if (timer > 0) {
 		timer--;
+	}
+	if (speedTimer > 0) {
+		speedTimer--;
 	}
 }
 
