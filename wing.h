@@ -1,31 +1,29 @@
 #pragma once
-
-#include"Model.h"
-#include"WorldTransform.h"
-#include"DebugText.h"
-
+#include "Model.h"
+#include "WorldTransform.h"
+///<summary>
+///風
+/// </summary>
 class Wing {
 public:
-	//初期化
+	///<summary>
+	///初期化
+	/// </summary>
 	void Initialize(Model* model);
 
-	//更新
-	void Update(Vector3 player);
+	///<summary>
+	///更新
+	/// </summary>
+	void Update(Vector3 pos);
 
-	//描画
+	///<summary>
+	///描画
+	/// </summary>
 	void Draw(ViewProjection viewProjection);
 
-	//判定
-	void Distance();
 private:
-	//ワールド座標
+	//ワールド変換データ
 	WorldTransform worldTransform_;
 	//モデル
-	Model* model_ = nullptr;
-	//デバッグテキスト
-	DebugText* debugText_ = nullptr;
-	//表示フラグ
-	bool make;
-	//描画時間
-	int drawTime;
+	Model* model_;
 };

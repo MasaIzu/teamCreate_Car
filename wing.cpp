@@ -9,50 +9,26 @@ void Wing::Initialize(Model* model) {
 	//引数として受け取ったデータをメンバ変数に記録する
 	model_ = model;
 
-	//ワールドトランスフォームの初期化
+	//初期座標をセット
+	worldTransform_.translation_ = Vector3{ 0,0,0 };
+
+	//ワールド変換の初期化
 	worldTransform_.Initialize();
-	worldTransform_.scale_ = { 6,6,10 };
 
-	//フラグ初期化
-	make = false;
-
-	//時間初期化
-	drawTime = 0;
-
-	//デバックテキスト初期化
-	debugText_ = DebugText::GetInstance();
+	worldTransform_.scale_ = Vector3{ 10,10,10 };
 }
 
-void Wing::Update(Vector3 player) {
-	worldTransform_.translation_ = player;
-	worldTransform_.translation_.z -= 5;
+void Wing::Update(Vector3 pos) {
+	//プレイヤーの座標を合わせる
+	worldTransform_.translation_ = pos;
 
-	//表示時間カウント
-	if (drawTime > 0) {
-		drawTime--;
-	}
-	else {
-		make = false;
-		drawTime = 0;
-	}
-
-	worldTransform_.rotation_.z += 10;
-
-	debugText_->SetPos(50, 100);
-	debugText_->Printf("drawTime : %d", drawTime);
-
+	//行列更新
 	AffinTrans::affin(worldTransform_);
 	worldTransform_.TransferMatrix();
+
 }
 
 void Wing::Draw(ViewProjection viewProjection) {
 	//3Dモデルを描画
-	if (make == true) {
-		model_->Draw(worldTransform_, viewProjection);
-	}
-}
-
-void Wing::Distance() {
-	make = true;
-	drawTime = 1;
+	model_->Draw(worldTransform_, viewProjection);
 }
