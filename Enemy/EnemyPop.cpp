@@ -19,7 +19,7 @@ void EnemyPop::Update(Model* model)
 	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
 
 	// プレイヤーのスピードに応じて敵のポップの間隔を上げる
-	popInterval = 2 * 60 - (6.2 * player_->GetPlayerSpeed());
+	popInterval = 2 * 60 - (5 * player_->GetPlayerSpeed());
 
 	// タイマーが間隔時間になったらランダムに生成と車種を抽選して、設定する
 	if (popTimer >= popInterval){

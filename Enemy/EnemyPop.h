@@ -59,17 +59,17 @@ private:// メンバ変数
 	float loadWidth = 18.5f;
 
 	// 敵の位置のパターンの配列
-	Vector3 enemyPos1[3] = { { 0 * loadWidth, 0, 22*loadWidth},
-							 {-2 * loadWidth, 0, 20*loadWidth},
-							 { 2 * loadWidth, 0, 21*loadWidth} };
+	Vector3 enemyPos1[3] = { { 0 * loadWidth, 0, 32*loadWidth},
+							 {-2 * loadWidth, 0, 30*loadWidth},
+							 { 2 * loadWidth, 0, 31*loadWidth} };
 
-	Vector3 enemyPos2[3] = { {-1 * loadWidth, 0, 22*loadWidth},
-							 {-2 * loadWidth, 0, 21*loadWidth},
-							 { 1 * loadWidth, 0, 20*loadWidth} };
+	Vector3 enemyPos2[3] = { {-1 * loadWidth, 0, 32*loadWidth},
+							 {-2 * loadWidth, 0, 31*loadWidth},
+							 { 1 * loadWidth, 0, 30*loadWidth} };
 
-	Vector3 enemyPos3[3] = { { 2 * loadWidth, 0, 22*loadWidth},
-							 {-1 * loadWidth, 0, 21*loadWidth},
-							 { 1 * loadWidth, 0, 20*loadWidth} };
+	Vector3 enemyPos3[3] = { { 2 * loadWidth, 0, 32*loadWidth},
+							 {-1 * loadWidth, 0, 31*loadWidth},
+							 { 1 * loadWidth, 0, 30*loadWidth} };
 	// 敵のランダムパターン
 	int carModelnum_ = 0;
 	CarModel carModel_ = CarModel::truck;
