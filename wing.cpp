@@ -11,7 +11,7 @@ void Wing::Initialize(Model* model) {
 
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
-	worldTransform_.scale_ = { 6,6,6 };
+	worldTransform_.scale_ = { 6,6,10 };
 
 	//フラグ初期化
 	make = false;
@@ -25,6 +25,7 @@ void Wing::Initialize(Model* model) {
 
 void Wing::Update(Vector3 player) {
 	worldTransform_.translation_ = player;
+	worldTransform_.translation_.z -= 5;
 
 	//表示時間カウント
 	if (drawTime > 0) {
@@ -34,6 +35,8 @@ void Wing::Update(Vector3 player) {
 		make = false;
 		drawTime = 0;
 	}
+
+	worldTransform_.rotation_.z += 10;
 
 	debugText_->SetPos(50, 100);
 	debugText_->Printf("drawTime : %d", drawTime);

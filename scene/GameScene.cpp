@@ -38,7 +38,7 @@ void GameScene::Initialize() {
 	load_->Initialize(loadModel_);
 
 	//風生成
-	wingModel_ = Model::CreateFromOBJ("ball", true);
+	wingModel_ = Model::CreateFromOBJ("wing", true);
 	wing_ = new Wing();
 	wing_->Initialize(wingModel_);
 
