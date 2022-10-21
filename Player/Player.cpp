@@ -140,7 +140,7 @@ void Player::PlayerMove(){
 
 	debugText_->SetPos(50, 70);
 	debugText_->Printf(
-		"speed:(%f,%f)", saveSpeed, playerSpeed);
+		"speed:(%d,%f)", overTakingCount, playerSpeed);
 
 
 	//s—ñXV
@@ -217,4 +217,10 @@ float Player::GetKmH() {
 int Player::GetMovingFlag()
 {
 	return moving;
+}
+
+void Player::SetOverTakingCount(int count) {
+
+	overTakingCount = count;
+
 }

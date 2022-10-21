@@ -49,6 +49,7 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 	debugCamera_->Update();
 
+	player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
 	player_->Updata();
 
 	enemyPop_->SetPlayer(player_);

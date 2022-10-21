@@ -31,7 +31,7 @@ public:// メンバ関数
 
 
 public://ゲッターセッター
-
+	int GetEnemyOverTakingCount();
 	int GetTrafficAccidentFlag();
 	void  SetPlayer(Player* player) { player_ = player; }
 	void SetWing(Wing* wing) { wing_ = wing; }
@@ -82,5 +82,7 @@ private:// メンバ変数
 	int popInterval = 2 * 60;
 
 	int TrafficAccidentFlag;
+
+	int overTakingCount;
 };
 
