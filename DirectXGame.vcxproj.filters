@@ -132,6 +132,9 @@
     <ClCompile Include="wing.cpp">
       <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>ソース ファイル\backGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3d\ViewProjection.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="wing.h">
       <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>ヘッダー ファイル\backGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

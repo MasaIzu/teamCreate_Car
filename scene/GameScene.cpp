@@ -37,6 +37,11 @@ void GameScene::Initialize() {
 	load_ = new Load();
 	load_->Initialize(loadModel_);
 
+	//背景生成
+	groundModel_ = Model::CreateFromOBJ("background", true);
+	backGround_ = new BackGround();
+	backGround_->Initialize(groundModel_);
+
 	//風生成
 	wingModel_ = Model::CreateFromOBJ("wing", true);
 	wing_ = new Wing();
@@ -59,6 +64,8 @@ void GameScene::Update() {
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
+	//背景更新
+	backGround_->Update(player_->GetPlayerSpeed());
 
 	//風更新
 	wing_->Update(player_->GetPlayerPos());
@@ -92,6 +99,9 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	
+	//背景描画
+	backGround_->Draw(viewProjection_);
+
 	//道路描画
 	load_->Draw(viewProjection_);
 

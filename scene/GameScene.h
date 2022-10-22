@@ -16,6 +16,7 @@
 #include "Enemy.h"
 #include "Collision.h"
 #include "wing.h"
+#include "background.h"
 
 /// <summary>
 /// ゲームシーン
@@ -71,6 +72,10 @@ class GameScene {
 	//道路
 	Model* loadModel_ = nullptr;
 	Load* load_ = nullptr;
+
+	//背景
+	Model* groundModel_ = nullptr;
+	BackGround* backGround_ = nullptr;
 
 	//風
 	Model* wingModel_ = nullptr;
