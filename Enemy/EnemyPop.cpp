@@ -13,7 +13,7 @@ EnemyPop::EnemyPop(){
 
 void EnemyPop::Initialize()
 {
-	puriusModel = Model::Create();
+	puriusModel = Model::CreateFromOBJ("puriusu", true);
 	trakuModel = Model::Create();
 	ferariModel = Model::CreateFromOBJ("CarFerari", true);
 }
