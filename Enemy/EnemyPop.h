@@ -71,6 +71,16 @@ private:// メンバ変数
 	Vector3 enemyPos3[3] = { { 2 * loadWidth, 0, 32*loadWidth},
 							 {-1 * loadWidth, 0, 31*loadWidth},
 							 { 1 * loadWidth, 0, 30*loadWidth} };
+
+	Vector3 enemyPos4[4] = { { 2 * loadWidth, 0, 32 * loadWidth},
+							 {-1 * loadWidth, 0, 31 * loadWidth},
+							 { 0 * loadWidth, 0, 30 * loadWidth},
+		                     {-2 * loadWidth, 0, 34 * loadWidth} };
+
+	Vector3 enemyPos5[4] = { { 1 * loadWidth, 0, 30 * loadWidth},
+							 {-2 * loadWidth, 0, 33 * loadWidth},
+							 {-1 * loadWidth, 0, 31 * loadWidth},
+							 { 0 * loadWidth, 0, 34 * loadWidth} };
 	// 敵のランダムパターン
 	int carModelnum_ = 0;
 	CarModel carModel_ = CarModel::truck;

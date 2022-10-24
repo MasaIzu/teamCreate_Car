@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include"Player.h"
 #include "wing.h"
+#include <time.h>
 
 EnemyPop::EnemyPop(){
 
@@ -14,7 +15,7 @@ EnemyPop::EnemyPop(){
 void EnemyPop::Initialize()
 {
 	puriusModel = Model::CreateFromOBJ("puriusu", true);
-	trakuModel = Model::Create();
+	trakuModel = Model::CreateFromOBJ("trakku",true);
 	ferariModel = Model::CreateFromOBJ("CarFerari", true);
 }
 
@@ -26,11 +27,13 @@ void EnemyPop::Update(Model* model)
 	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
 
 	// プレイヤーのスピードに応じて敵のポップの間隔を上げる
-	popInterval = 2 * 60 - (5 * player_->GetPlayerSpeed());
+	popInterval = 2 * 60 - (4 * player_->GetPlayerSpeed());
 
+	
 	// タイマーが間隔時間になったらランダムに生成と車種を抽選して、設定する
 	if (popTimer >= popInterval){
-		carPattern_ = rand() % 3 + 1;
+		
+		carPattern_ = rand() % 5 + 1;
 		switch (carPattern_)
 		{
 		case 1:// 車の生成パターン---------------１
@@ -111,6 +114,56 @@ void EnemyPop::Update(Model* model)
 				enemy1.push_back(std::move(newEnemy));
 			}
 
+			// 生成タイマーを初期化
+			popTimer = 0;
+			break;
+		case 4:
+			for (int i = 0; i < 4; i++) {
+				// 車種のパターンを設定
+				CarModelLottery();
+
+				// 敵を生成し、初期化
+				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
+				newEnemy->SetPlayer(player_);
+
+				if (carModelnum_ == 1) {
+					newEnemy->Initialize(trakuModel, enemyPos4[i], carModel_);
+				}
+				else if (carModelnum_ == 2) {
+					newEnemy->Initialize(puriusModel, enemyPos4[i], carModel_);
+				}
+				else if (carModelnum_ == 3) {
+					newEnemy->Initialize(ferariModel, enemyPos4[i], carModel_);
+				}
+
+				// 敵をリストに登録
+				enemy1.push_back(std::move(newEnemy));
+			}
+			// 生成タイマーを初期化
+			popTimer = 0;
+			break;
+		case 5:
+			for (int i = 0; i < 4; i++) {
+				// 車種のパターンを設定
+				CarModelLottery();
+
+				// 敵を生成し、初期化
+				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
+				newEnemy->SetPlayer(player_);
+
+				if (carModelnum_ == 1) {
+					newEnemy->Initialize(trakuModel, enemyPos5[i], carModel_);
+				}
+				else if (carModelnum_ == 2) {
+					newEnemy->Initialize(puriusModel, enemyPos5[i], carModel_);
+				}
+				else if (carModelnum_ == 3) {
+					newEnemy->Initialize(ferariModel, enemyPos5[i], carModel_);
+				}
+
+				// 敵をリストに登録
+				enemy1.push_back(std::move(newEnemy));
+			}
 			// 生成タイマーを初期化
 			popTimer = 0;
 			break;

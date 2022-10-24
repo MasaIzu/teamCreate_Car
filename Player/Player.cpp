@@ -26,7 +26,7 @@ Player::Player() {
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = { 0, 0, -50 };
-	worldTransform_.scale_ = { 5,5,5 };
+	worldTransform_.scale_ = { 4,4,4 };
 	
 	//行列更新
 	AffinTrans::affin(worldTransform_);

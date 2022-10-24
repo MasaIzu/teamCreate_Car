@@ -1,7 +1,7 @@
 ﻿#include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
-
+#include <time.h>
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
@@ -9,7 +9,7 @@ GameScene::~GameScene() {
 }
 
 void GameScene::Initialize() {
-
+	srand(time(nullptr));
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
@@ -53,6 +53,8 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
+
+	debugCamera_->Update();
 
 	player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
 	player_->Updata();

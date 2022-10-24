@@ -14,7 +14,7 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 
 	// ‰ŠúÀ•W‚ğİ’è
 	worldTransform_.translation_ = pos;
-	worldTransform_.scale_ = { 5,5,5 };
+	worldTransform_.scale_ = { 4,4,4 };
 	initPos = worldTransform_.translation_;
 	// Ôí‚ğİ’è
 	carModel_ = carModel;
@@ -23,13 +23,14 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
-		moveSpeed_ = { 0.0f,0.0f, 0.7f };
+		worldTransform_.scale_ = { 9,10,9 };
+		moveSpeed_ = { 0.0f,0.0f, 1.0f };
 		break;
 	case CarModel::prius:
-		moveSpeed_ = { 0.0f,0.0f, 0.6f };
+		moveSpeed_ = { 0.0f,0.0f, 3.0f };
 		break;
 	case CarModel::ferrari:
-		moveSpeed_ = { 0.0f,0.0f, 0.5f };
+		moveSpeed_ = { 0.0f,0.0f, 5.0f };
 		break;
 	default:
 		break;
@@ -82,7 +83,7 @@ void Enemy::Update()
 	worldTransform_.TransferMatrix();
 
 	// ¶‚«‚Ä‚¢‚éŠÔ‚ªŒÀŠE‚É’B‚µ‚½‚çÁ‚·
-	if (worldTransform_.translation_.z <= -100) {
+	if (worldTransform_.translation_.z <= -100 || worldTransform_.translation_.z >= 630) {
 		isDead_ = true;
 	}
 }
@@ -210,10 +211,10 @@ void Enemy::ContactPlayer()
 				moveSpeed_ = { 0.0f,0.0f, 1.0f };
 				break;
 			case CarModel::prius:
-				moveSpeed_ = { 0.0f,0.0f, 0.8f };
+				moveSpeed_ = { 0.0f,0.0f, 3.0f };
 				break;
 			case CarModel::ferrari:
-				moveSpeed_ = { 0.0f,0.0f, 0.7f };
+				moveSpeed_ = { 0.0f,0.0f, 5.0f };
 				break;
 			default:
 				break;
