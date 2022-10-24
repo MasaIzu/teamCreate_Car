@@ -42,27 +42,38 @@ void Enemy::Update()
 	lifeTimer++;
 
 	//前に進む処理
-	worldTransform_.translation_ -= moveSpeed_ * player_->GetPlayerSpeed();
+	if (contactVer0 == false) {
+		worldTransform_.translation_.z += moveSpeed_.z - player_->GetPlayerSpeed();
+	}
+	else if(contactVer0 == true)
+	{
+		worldTransform_.translation_.z += moveSpeed_.z;
+	}
+	
 
-	// 左車線に移動可能だったら、一レーン移動させる
-	if (leftLaneChangeFlag_ == true) {
-		if (worldTransform_.translation_.x > initPos.x - (1 * loadWidth)) {
-			worldTransform_.translation_.x -= 0.5f;
+	if (contactFlag == false) {
+		// 左車線に移動可能だったら、一レーン移動させる
+		if (leftLaneChangeFlag_ == true) {
+			if (worldTransform_.translation_.x > initPos.x - (1 * loadWidth)) {
+				worldTransform_.translation_.x -= 0.5f;
+			}
+			else if (worldTransform_.translation_.x < initPos.x - (1 * loadWidth)) {
+				worldTransform_.translation_.x = initPos.x - (1 * loadWidth);
+			}
 		}
-		else if (worldTransform_.translation_.x < initPos.x - (1 * loadWidth)) {
-			worldTransform_.translation_.x = initPos.x - (1 * loadWidth);
+
+		// 右車線に移動可能だったら、一レーン移動させる
+		if (rightLaneChangeFlag_ == true) {
+			if (worldTransform_.translation_.x < initPos.x + (1 * loadWidth)) {
+				worldTransform_.translation_.x += 0.5f;
+			}
+			else if (worldTransform_.translation_.x > initPos.x + (1 * loadWidth)) {
+				worldTransform_.translation_.x = initPos.x + (1 * loadWidth);
+			}
 		}
 	}
 
-	// 右車線に移動可能だったら、一レーン移動させる
-	if (rightLaneChangeFlag_ == true) {
-		if (worldTransform_.translation_.x < initPos.x + (1 * loadWidth)) {
-			worldTransform_.translation_.x += 0.5f;
-		}
-		else if (worldTransform_.translation_.x > initPos.x + (1 * loadWidth)) {
-			worldTransform_.translation_.x = initPos.x + (1 * loadWidth);
-		}
-	}
+	
 
 	ContactPlayer();
 
@@ -188,7 +199,7 @@ void Enemy::ContactPlayer()
 	
 	if (contactVer0 == true) {
 		fukitobiTime--;
-		moveSpeed_ = { 0,0,-0.7f };
+		moveSpeed_ = { 0,0,+2.5f };
 		if (fukitobiTime <= 0) {
 			contactVer0 = false;
 			contactFlag = false;
