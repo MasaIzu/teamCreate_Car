@@ -84,6 +84,10 @@ class GameScene {
 	//当たり判定
 	collision* cali_ = nullptr;
 
+	//ゲームクリア
+	std::unique_ptr<Sprite> spriteResult;
+
+	bool GameResultFlag = false;
 
 	/// <summary>
 	/// ゲームシーン用

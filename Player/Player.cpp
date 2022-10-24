@@ -224,3 +224,8 @@ void Player::SetOverTakingCount(int count) {
 	overTakingCount = count;
 
 }
+
+int Player::GetoOverTakingCount()
+{
+	return overTakingCount;
+}

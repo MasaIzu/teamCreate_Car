@@ -47,6 +47,12 @@ void GameScene::Initialize() {
 	wing_ = new Wing();
 	wing_->Initialize(wingModel_);
 
+	//クリアのテクスチャ
+	uint32_t result = TextureManager::Load("TitleCar.png");
+	spriteResult.reset(
+		Sprite::Create(result, Vector2(640, 360), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteResult->SetSize(Vector2(800.0f, 600.0f));
+	
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
 }
@@ -56,6 +62,10 @@ void GameScene::Update() {
 
 	player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
 	player_->Updata();
+
+	if (player_->GetoOverTakingCount() >= 30) {
+		GameResultFlag = true;
+	}
 
 	enemyPop_->SetPlayer(player_);
 	enemyPop_->SetWing(wing_);
@@ -125,7 +135,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
-
+	if (GameResultFlag) {
+		spriteResult->Draw();
+	}
 	// デバッグテキストの描画
 	debugText_->DrawAll(commandList);
 	//

@@ -88,6 +88,8 @@ public://ゲッター
     /// </summary>
     void SetOverTakingCount(int count);
 
+    int GetoOverTakingCount();
+
 private:
     //ワールド変換データ
     WorldTransform worldTransform_;
