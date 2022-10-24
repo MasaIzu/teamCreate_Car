@@ -11,6 +11,13 @@ EnemyPop::EnemyPop(){
 	overTakingCount = 0;
 }
 
+void EnemyPop::Initialize()
+{
+	puriusModel = Model::Create();
+	trakuModel = Model::Create();
+	ferariModel = Model::CreateFromOBJ("CarFerari", true);
+}
+
 void EnemyPop::Update(Model* model)
 {
 	popTimer++;
@@ -35,8 +42,15 @@ void EnemyPop::Update(Model* model)
 				// “G‚ğ¶¬‚µA‰Šú‰»
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
 				newEnemy->SetPlayer(player_);
-				newEnemy->Initialize(model, enemyPos1[i],carModel_);
-
+				if (carModelnum_ == 1){
+					newEnemy->Initialize(trakuModel, enemyPos1[i], carModel_);
+				}
+				else if (carModelnum_ == 2) {
+					newEnemy->Initialize(puriusModel, enemyPos1[i], carModel_);
+				}
+				else if (carModelnum_ == 3) {
+					newEnemy->Initialize(ferariModel, enemyPos1[i], carModel_);
+				}
 				// “G‚ğƒŠƒXƒg‚É“o˜^
 				enemy1.push_back(std::move(newEnemy));
 			}
@@ -54,7 +68,16 @@ void EnemyPop::Update(Model* model)
 				// “G‚ğ¶¬‚µA‰Šú‰»
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
 				newEnemy->SetPlayer(player_);
-				newEnemy->Initialize(model, enemyPos2[i], carModel_);
+				if (carModelnum_ == 1) {
+					newEnemy->Initialize(trakuModel, enemyPos2[i], carModel_);
+				}
+				else if (carModelnum_ == 2) {
+					newEnemy->Initialize(puriusModel, enemyPos2[i], carModel_);
+				}
+				else if (carModelnum_ == 3) {
+					newEnemy->Initialize(ferariModel, enemyPos2[i], carModel_);
+				}
+
 
 				// “G‚ğƒŠƒXƒg‚É“o˜^
 				enemy1.push_back(std::move(newEnemy));
@@ -72,7 +95,17 @@ void EnemyPop::Update(Model* model)
 				// “G‚ğ¶¬‚µA‰Šú‰»
 				std::unique_ptr<Enemy> newEnemy = std::make_unique<Enemy>();
 				newEnemy->SetPlayer(player_);
-				newEnemy->Initialize(model, enemyPos3[i], carModel_);
+
+				if (carModelnum_ == 1) {
+					newEnemy->Initialize(trakuModel, enemyPos3[i], carModel_);
+				}
+				else if (carModelnum_ == 2) {
+					newEnemy->Initialize(puriusModel, enemyPos3[i], carModel_);
+				}
+				else if (carModelnum_ == 3) {
+					newEnemy->Initialize(ferariModel, enemyPos3[i], carModel_);
+				}
+				
 
 				// “G‚ğƒŠƒXƒg‚É“o˜^
 				enemy1.push_back(std::move(newEnemy));

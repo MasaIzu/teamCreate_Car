@@ -16,6 +16,7 @@ class EnemyPop
 public:// メンバ関数
 
 	EnemyPop();
+	void Initialize();
 
 	// 更新処理
 	void Update(Model* model);
@@ -84,5 +85,11 @@ private:// メンバ変数
 	int TrafficAccidentFlag;
 
 	int overTakingCount;
+
+	// 敵のモデル
+	Model *puriusModel = nullptr;
+	Model* ferariModel = nullptr;
+	Model* trakuModel = nullptr;
+
 };
 

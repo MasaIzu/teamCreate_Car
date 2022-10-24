@@ -23,6 +23,7 @@ void GameScene::Initialize() {
 	// 敵の生成のnew
 	enemyPop_ = new EnemyPop();
 	enemy_ = new Enemy();
+	enemyPop_->Initialize();
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
