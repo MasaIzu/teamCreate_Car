@@ -8,7 +8,7 @@ EnemyPop::EnemyPop(){
 	collision_ = new collision();
 	TrafficAccidentFlag = 0;
 	debugText_ = DebugText::GetInstance();
-
+	overTakingCount = 0;
 }
 
 void EnemyPop::Update(Model* model)
@@ -181,6 +181,13 @@ void EnemyPop::Update(Model* model)
 			}
 		}
 		enemy->Update();
+
+		if (player_->GetPlayerPos().z > enemy->GetPos().z) {
+			if (enemy->playerOverTaking == 0) {
+				enemy->playerOverTaking = 1;
+				overTakingCount++;
+			}
+		}
 	}
 
 
@@ -256,4 +263,9 @@ void EnemyPop::CarModelLottery()
 	else if (carModelnum_ == 3) {
 		carModel_ = CarModel::ferrari;
 	}
+}
+
+int EnemyPop::GetEnemyOverTakingCount()
+{
+	return overTakingCount;
 }

@@ -70,6 +70,9 @@ public:// メンバ関数
 	void ContactPlayer();
 	bool ContactFlag() { return contactFlag; }
 
+	//プレイヤーに抜かれた時
+	int playerOverTaking;
+
 private:// メンバ変数
 
 	// ワールド変換データ
