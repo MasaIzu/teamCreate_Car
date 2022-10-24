@@ -14,7 +14,7 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 
 	// ‰ŠúÀ•W‚ğİ’è
 	worldTransform_.translation_ = pos;
-	worldTransform_.scale_ = { 5,5,5 };
+	worldTransform_.scale_ = { 4,4,4 };
 	initPos = worldTransform_.translation_;
 	// Ôí‚ğİ’è
 	carModel_ = carModel;
@@ -23,6 +23,7 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 	switch (carModel_)
 	{
 	case CarModel::truck:
+		worldTransform_.scale_ = { 9,10,9 };
 		moveSpeed_ = { 0.0f,0.0f, 1.0f };
 		break;
 	case CarModel::prius:
@@ -82,7 +83,7 @@ void Enemy::Update()
 	worldTransform_.TransferMatrix();
 
 	// ¶‚«‚Ä‚¢‚éŠÔ‚ªŒÀŠE‚É’B‚µ‚½‚çÁ‚·
-	if (worldTransform_.translation_.z <= -100||worldTransform_.translation_.z>=620) {
+	if (worldTransform_.translation_.z <= -100 || worldTransform_.translation_.z >= 630) {
 		isDead_ = true;
 	}
 }
