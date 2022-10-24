@@ -35,7 +35,7 @@ Player::Player() {
 	input_ = Input::GetInstance();
 	debugText_ = DebugText::GetInstance();
 
-	model_ = Model::Create();
+	model_ = Model::CreateFromOBJ("CarPlayer",true);
 	collision_ = new collision();
 }
 
