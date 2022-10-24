@@ -29,14 +29,6 @@ void GameScene::Initialize() {
 	viewProjection_.Initialize();
 	viewProjection_.eye.y += 70;
 	viewProjection_.eye.z -= 80;
-	viewProjection_.target.y += 2;
-	gamePlayCameraPos = viewProjection_.eye;
-	
-	//カメラの位置替え
-	viewProjection_.eye = { -70,63,-80 };
-	keepCamera = viewProjection_.eye;
-	cameraTransFlag = 0;
-	cameraSpeed = { 1.0f, 1.0f, 1.0f };
 	
 	
 	//道路生成
@@ -61,53 +53,6 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	if (input_->TriggerKey(DIK_SPACE)) {
-		cameraTransFlag = 1;
-	}
-	if (cameraTransFlag == 0) {
-		if (keepCamera.x > viewProjection_.eye.x) {
-			viewProjection_.eye.x += cameraSpeed.x;
-		}
-		if (keepCamera.y > viewProjection_.eye.y) {
-			viewProjection_.eye.y += cameraSpeed.y;
-		}
-		if (keepCamera.z > viewProjection_.eye.z) {
-			viewProjection_.eye.z += cameraSpeed.z;
-		}
-
-		if (keepCamera.x < viewProjection_.eye.x) {
-			viewProjection_.eye.x -= cameraSpeed.x;
-		}
-		if (keepCamera.y < viewProjection_.eye.y) {
-			viewProjection_.eye.y -= cameraSpeed.y;
-		}
-		if (keepCamera.z < viewProjection_.eye.z) {
-			viewProjection_.eye.z -= cameraSpeed.z;
-		}
-	}
-	else if (cameraTransFlag == 1) {
-		if (gamePlayCameraPos.x > viewProjection_.eye.x) {
-			viewProjection_.eye.x += cameraSpeed.x;
-		}
-		if (gamePlayCameraPos.y > viewProjection_.eye.y) {
-			viewProjection_.eye.y += cameraSpeed.y;
-		}
-		if (gamePlayCameraPos.z > viewProjection_.eye.z) {
-			viewProjection_.eye.z += cameraSpeed.z;
-		}
-
-		if (gamePlayCameraPos.x < viewProjection_.eye.x) {
-			viewProjection_.eye.x -= cameraSpeed.x;
-		}
-		if (gamePlayCameraPos.y < viewProjection_.eye.y) {
-			viewProjection_.eye.y -= cameraSpeed.y;
-		}
-		if (gamePlayCameraPos.z < viewProjection_.eye.z) {
-			viewProjection_.eye.z -= cameraSpeed.z;
-		}
-	}
-	viewProjection_.UpdateMatrix();
-	viewProjection_.TransferMatrix();
 
 	player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
 	player_->Updata();
