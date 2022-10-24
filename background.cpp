@@ -12,15 +12,15 @@ void BackGround::Initialize(Model* modelLeft, Model* modelRight) {
 	//初期座標をセット
 	for (int i = 0; i < 2; i++) {
 		float z = i * 12000;
-		worldTransformRight_[i].translation_ = Vector3{ -163,-6,z };
-		worldTransformLeft_[i].translation_ = Vector3{ 163,-6,z };
+		worldTransformRight_[i].translation_ = Vector3{ -218,-6,z };
+		worldTransformLeft_[i].translation_ = Vector3{ 219,-6,z };
 
 		//ワールド変換の初期化
 		worldTransformRight_[i].Initialize();
 		worldTransformLeft_[i].Initialize();
 
-		worldTransformRight_[i].scale_ = Vector3{ 40,20,10 };
-		worldTransformLeft_[i].scale_ = Vector3{ 40,20,10 };
+		worldTransformRight_[i].scale_ = Vector3{ 50,20,10 };
+		worldTransformLeft_[i].scale_ = Vector3{ 50,20,10 };
 	}
 
 	speed_ = 3;

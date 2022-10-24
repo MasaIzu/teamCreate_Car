@@ -18,6 +18,7 @@
 #include "wing.h"
 #include "background.h"
 
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -86,6 +87,11 @@ class GameScene {
 	//当たり判定
 	collision* cali_ = nullptr;
 
+	Vector3 gamePlayCameraPos;
+	Vector3 keepCamera;
+
+	int cameraTransFlag = 0;
+	Vector3 cameraSpeed;
 
 	/// <summary>
 	/// ゲームシーン用
