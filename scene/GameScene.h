@@ -74,8 +74,10 @@ class GameScene {
 	Load* load_ = nullptr;
 
 	//背景
-	Model* groundModel_ = nullptr;
+	Model* groundRightModel_ = nullptr;
 	BackGround* backGround_ = nullptr;
+
+	Model* groundLeftModel_ = nullptr;
 
 	//風
 	Model* wingModel_ = nullptr;

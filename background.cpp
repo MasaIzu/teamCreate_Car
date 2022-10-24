@@ -2,22 +2,25 @@
 #include <cassert>
 #include "Affin.h"
 
-void BackGround::Initialize(Model* model) {
+void BackGround::Initialize(Model* modelLeft, Model* modelRight) {
 	//NULLポインタチェック
-	assert(model);
-
+	assert(modelLeft);
+	assert(modelRight);
 	//引数として受け取ったデータをメンバ変数に記録する
-	model_ = model;
-
+	modelLeft_ = modelLeft;
+	modelRight_ = modelRight;
 	//初期座標をセット
 	for (int i = 0; i < 2; i++) {
 		float z = i * 12000;
-		worldTransform_[i].translation_ = Vector3{ 0,-6,z };
+		worldTransformRight_[i].translation_ = Vector3{ -163,-6,z };
+		worldTransformLeft_[i].translation_ = Vector3{ 163,-6,z };
 
 		//ワールド変換の初期化
-		worldTransform_[i].Initialize();
+		worldTransformRight_[i].Initialize();
+		worldTransformLeft_[i].Initialize();
 
-		worldTransform_[i].scale_ = Vector3{ 10,10,10 };
+		worldTransformRight_[i].scale_ = Vector3{ 40,20,10 };
+		worldTransformLeft_[i].scale_ = Vector3{ 40,20,10 };
 	}
 
 	speed_ = 3;
@@ -26,20 +29,28 @@ void BackGround::Initialize(Model* model) {
 
 void BackGround::Update(float speed) {
 	for (int i = 0; i < 2; i++) {
-		worldTransform_[i].translation_.z -= speed;
+		worldTransformRight_[i].translation_.z -= speed;
+		worldTransformLeft_[i].translation_.z -= speed;
 
-		if (worldTransform_[i].translation_.z < -12000) {
-			worldTransform_[i].translation_.z = 12000;
+		if (worldTransformRight_[i].translation_.z < -12000) {
+			worldTransformRight_[i].translation_.z = 12000;
+		}
+		if (worldTransformLeft_[i].translation_.z < -12000) {
+			worldTransformLeft_[i].translation_.z = 12000;
 		}
 		//行列更新
-		AffinTrans::affin(worldTransform_[i]);
-		worldTransform_[i].TransferMatrix();
+		AffinTrans::affin(worldTransformRight_[i]);
+		worldTransformRight_[i].TransferMatrix();
+
+		AffinTrans::affin(worldTransformLeft_[i]);
+		worldTransformLeft_[i].TransferMatrix();
 	}
 }
 
 void BackGround::Draw(ViewProjection viewProjection) {
 	//3Dモデルを描画
 	for (int i = 0; i < 2; i++) {
-		model_->Draw(worldTransform_[i], viewProjection);
+		modelLeft_->Draw(worldTransformRight_[i], viewProjection);
+		modelRight_->Draw(worldTransformLeft_[i], viewProjection);
 	}
 }

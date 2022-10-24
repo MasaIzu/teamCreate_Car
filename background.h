@@ -9,7 +9,7 @@ public:
 	///<summary>
 	///初期化
 	/// </summary>
-	void Initialize(Model* model);
+	void Initialize(Model* modelLeft,Model* modelRight);
 
 	///<summary>
 	///更新
@@ -23,9 +23,11 @@ public:
 
 private:
 	//ワールド変換データ
-	WorldTransform worldTransform_[2];
+	WorldTransform worldTransformRight_[2];
+	WorldTransform worldTransformLeft_[2];
 	//モデル
-	Model* model_;
+	Model* modelRight_;
+	Model* modelLeft_;
 
 	float speed_;
 };

@@ -38,9 +38,11 @@ void GameScene::Initialize() {
 	load_->Initialize(loadModel_);
 
 	//背景生成
-	groundModel_ = Model::CreateFromOBJ("background", true);
+	groundRightModel_ = Model::CreateFromOBJ("BackGroundRight", true);
+	groundLeftModel_ = Model::CreateFromOBJ("BackGroundLeft", true);
+
 	backGround_ = new BackGround();
-	backGround_->Initialize(groundModel_);
+	backGround_->Initialize(groundRightModel_, groundLeftModel_);
 
 	//風生成
 	wingModel_ = Model::CreateFromOBJ("wing", true);
