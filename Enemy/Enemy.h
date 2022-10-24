@@ -36,6 +36,9 @@ public:// メンバ関数
 
 	void RightLaneChangeCheck(Vector3& pos);
 
+	// エネミーの車のモデルの種類のゲッター
+	CarModel GetCarModel() { return carModel_; }
+
 	// ポジションのゲッター
 	Vector3 GetPos() { return worldTransform_.translation_; }
 
