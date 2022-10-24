@@ -15,7 +15,7 @@ void Wing::Initialize(Model* model) {
 	//ƒ[ƒ‹ƒh•ÏŠ·‚Ì‰Šú‰»
 	worldTransform_.Initialize();
 
-	worldTransform_.scale_ = Vector3{ 5,5,10 };
+	worldTransform_.scale_ = Vector3{ 7,7,14 };
 
 	//•Ï”‰Šú‰»
 	make = false;

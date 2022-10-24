@@ -18,7 +18,9 @@ void GameScene::Initialize() {
 	model_ = Model::Create();
 
 	// プレイヤーのnew
+	playerModel_ = Model::CreateFromOBJ("CarPlayer", true);
 	player_ = new Player();
+	player_->Initialize(playerModel_);
 
 	// 敵の生成のnew
 	enemyPop_ = new EnemyPop();
@@ -49,26 +51,38 @@ void GameScene::Initialize() {
 
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
+
+	//シーン設定
+	scene = 0;
+	//ロード時間
+	waitTimer = 180;
 }
 
 void GameScene::Update() {
-	debugCamera_->Update();
+	if (scene == 0) {
+		//タイトルと背景自動移動
+		load_->Demo();
+		backGround_->Demo();
+	}
+	if (scene == 1) {
+		debugCamera_->Update();
 
-	player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
-	player_->Updata();
+		player_->SetOverTakingCount(enemyPop_->GetEnemyOverTakingCount());
+		player_->Updata();
 
-	enemyPop_->SetPlayer(player_);
-	enemyPop_->SetWing(wing_);
-	enemyPop_->Update(model_);
-	
+		enemyPop_->SetPlayer(player_);
+		enemyPop_->SetWing(wing_);
+		enemyPop_->Update(model_);
 
-	//道路更新
-	load_->Update(player_->GetPlayerSpeed());
-	//背景更新
-	backGround_->Update(player_->GetPlayerSpeed());
 
-	//風更新
-	wing_->Update(player_->GetPlayerPos());
+		//道路更新
+		load_->Update(player_->GetPlayerSpeed());
+		//背景更新
+		backGround_->Update(player_->GetPlayerSpeed());
+
+		//風更新
+		wing_->Update(player_->GetPlayerPos());
+	}
 
 }
 
@@ -105,14 +119,16 @@ void GameScene::Draw() {
 	//道路描画
 	load_->Draw(viewProjection_);
 
-	//風描画
-	wing_->Draw(viewProjection_);
-	
 	// プレイヤーの描画
 	player_->Draw(viewProjection_);
 
-	// 敵の描画
-	enemyPop_->Draw(viewProjection_);
+	if (scene == 1) {
+		//風描画
+		wing_->Draw(viewProjection_);
+
+		// 敵の描画
+		enemyPop_->Draw(viewProjection_);
+	}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

@@ -37,6 +37,19 @@ void BackGround::Update(float speed) {
 	}
 }
 
+void BackGround::Demo() {
+	for (int i = 0; i < 2; i++) {
+		worldTransform_[i].translation_.z -= 20;
+
+		if (worldTransform_[i].translation_.z < -12000) {
+			worldTransform_[i].translation_.z = 12000;
+		}
+		//行列更新
+		AffinTrans::affin(worldTransform_[i]);
+		worldTransform_[i].TransferMatrix();
+	}
+}
+
 void BackGround::Draw(ViewProjection viewProjection) {
 	//3Dモデルを描画
 	for (int i = 0; i < 2; i++) {

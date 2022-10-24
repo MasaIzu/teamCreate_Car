@@ -43,7 +43,7 @@ Player::~Player() {
 	delete model_;
 }
 
-void Player::Initialize() {
+void Player::Initialize(Model* model) {
 	playerSpeed = 1.0f;
 	playerJumpSpeed = 0;
 	playerMaxAccelerator = 5.0f;
@@ -52,8 +52,10 @@ void Player::Initialize() {
 	gravity = 9.0f;
 	junpFrame = 0;
 
+	model_ = model;
+
 	//ワールドトランスフォームの初期化
-	worldTransform_.Initialize();
+	//worldTransform_.Initialize();
 
 }
 

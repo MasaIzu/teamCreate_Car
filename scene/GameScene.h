@@ -62,6 +62,7 @@ class GameScene {
 
 	//プレイヤー
 	Player* player_ = nullptr;
+	Model* playerModel_ = nullptr;
 	
 	// 敵の生成
 	EnemyPop* enemyPop_ = nullptr;
@@ -88,4 +89,7 @@ class GameScene {
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
+	int scene;
+	//ロード時間
+	int waitTimer;
 };

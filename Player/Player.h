@@ -17,7 +17,7 @@ public:
     /// <summary>
     /// ‰Šú‰»
     /// </summary>
-    void Initialize();
+    void Initialize(Model* model);
 
     /// <summary>
     /// XV
