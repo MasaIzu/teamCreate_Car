@@ -1,5 +1,4 @@
 #pragma once
-#include"DebugText.h"
 #include"Model.h"
 #include"WorldTransform.h"
 #include"ViewProjection.h"
@@ -92,7 +91,6 @@ private:
     //ワールド変換データ
     WorldTransform worldTransform_;
 
-    DebugText* debugText_ = nullptr;
     Input* input_ = nullptr;
     Model* model_ = nullptr;
     collision* collision_ = nullptr;
@@ -125,4 +123,6 @@ private:
     int overTakingCount;
     int speedTimer;
 
+    int bustFlag;
+    float bustMax;
 };

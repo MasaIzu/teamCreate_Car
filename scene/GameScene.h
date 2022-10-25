@@ -50,7 +50,21 @@ class GameScene {
 	/// </summary>
 	void Draw();
 
+	void camera();
+
+	enum class Scene {
+		Blackout,//暗転シーン
+		Title,//タイトル
+		Stage,//バトルステージ
+		Result,//リザルト
+		Initialize,//初期化シーン
+	};
+
+
   private: // メンバ変数
+	 //フェーズ
+	 Scene scene_ = Scene::Title;
+
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
@@ -92,6 +106,9 @@ class GameScene {
 
 	int cameraTransFlag = 0;
 	Vector3 cameraSpeed;
+
+	int cameraMoveFlag = 0;
+	int Timer = 0;
 
 	/// <summary>
 	/// ゲームシーン用

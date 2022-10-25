@@ -47,6 +47,26 @@ void BackGround::Update(float speed) {
 	}
 }
 
+void BackGround::Demo() {
+	for (int i = 0; i < 2; i++) {
+		worldTransformRight_[i].translation_.z -= 1;
+		worldTransformLeft_[i].translation_.z -= 1;
+
+		if (worldTransformRight_[i].translation_.z < -12000) {
+			worldTransformRight_[i].translation_.z = 12000;
+		}
+		if (worldTransformLeft_[i].translation_.z < -12000) {
+			worldTransformLeft_[i].translation_.z = 12000;
+		}
+		//行列更新
+		AffinTrans::affin(worldTransformRight_[i]);
+		worldTransformRight_[i].TransferMatrix();
+
+		AffinTrans::affin(worldTransformLeft_[i]);
+		worldTransformLeft_[i].TransferMatrix();
+	}
+}
+
 void BackGround::Draw(ViewProjection viewProjection) {
 	//3Dモデルを描画
 	for (int i = 0; i < 2; i++) {
