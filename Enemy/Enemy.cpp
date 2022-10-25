@@ -181,23 +181,47 @@ void Enemy::Draw(const ViewProjection& viewProjection)
 void Enemy::ContactPlayer()
 {
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
-			if (player_->GetMovingFlag() == 0) {
-				fukitobiTime = fukitobiTimeMax;
-				contactVer0 = true;
-				contactFlag = true;
+		if (carModel_ == CarModel::truck)
+		{
+			if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 100, 6))) {
+				if (player_->GetMovingFlag() == 0) {
+					fukitobiTime = fukitobiTimeMax;
+					contactVer0 = true;
+					contactFlag = true;
+				}
+			}
+		}
+		else {
+			if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
+				if (player_->GetMovingFlag() == 0) {
+					fukitobiTime = fukitobiTimeMax;
+					contactVer0 = true;
+					contactFlag = true;
+				}
 			}
 		}
 	}
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
-			if (player_->GetMovingFlag() == 1) {
-				contactVer1 = true;
+		if (carModel_ == CarModel::truck)
+		{
+			if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 100, 6))) {
+				if (player_->GetMovingFlag() == 1) {
+					contactVer1 = true;
+				}
+				else if (player_->GetMovingFlag() == -1) {
+					contactVer2 = true;
+				}
+				contactFlag = true;
 			}
-			else if (player_->GetMovingFlag() == -1) {
-				contactVer2 = true;
+		}
+		else {
+			if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
+				if (player_->GetMovingFlag() == 0) {
+					fukitobiTime = fukitobiTimeMax;
+					contactVer0 = true;
+					contactFlag = true;
+				}
 			}
-			contactFlag = true;
 		}
 	}
 	
