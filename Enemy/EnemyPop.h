@@ -94,12 +94,19 @@ private:// ƒƒ“ƒo•Ï”
 
 	int TrafficAccidentFlag;
 
-	int overTakingCount;
+	int overTakingCount=200;
 
 	// “G‚Ìƒ‚ƒfƒ‹
-	Model *puriusModel = nullptr;
+	Model* puriusModel = nullptr;
 	Model* ferariModel = nullptr;
 	Model* trakuModel = nullptr;
 
+	// ƒS[ƒ‹‚Ì“G
+	std::unique_ptr<Enemy> GoalEnemy = nullptr;
+	std::unique_ptr<Enemy> GoalFlagOBJ = nullptr;
+	Model* GoalEnemyModel = nullptr;
+	Model* GoalFlagOBJModel = nullptr;
+	Vector3 GoalEnemyPos = { 0 * loadWidth, 0, 34 * loadWidth };
+	bool goalFlag = false;
 };
 
