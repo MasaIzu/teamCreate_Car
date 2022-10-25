@@ -2,6 +2,8 @@
 #include "TextureManager.h"
 #include <cassert>
 
+float PI = 3.141592;
+
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
@@ -52,7 +54,29 @@ void GameScene::Initialize() {
 	spriteResult.reset(
 		Sprite::Create(result, Vector2(640, 360), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
 	spriteResult->SetSize(Vector2(800.0f, 600.0f));
-	
+
+	//スタートのカウントののテクスチャ
+	uint32_t  stertCount = TextureManager::Load("stert321.png");
+	for (int i = 0; i < 3; i++) {
+		spriteStertTime[i].reset(
+			Sprite::Create(stertCount, Vector2(640, 360), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+		spriteStertTime[i]->SetTextureRect(Vector2(256 - (128 * i), 0), Vector2(128, 192));
+		spriteStertTime[i]->SetSize(Vector2(128, 128));
+	}
+
+	//クリアのテクスチャ
+	uint32_t meter = TextureManager::Load("meter.png");
+	spriteMeter.reset(
+		Sprite::Create(meter, Vector2(1180, 620), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteMeter->SetSize(Vector2(200, 200));
+
+	//針のテクスチャ
+	uint32_t needle = TextureManager::Load("needle.png");
+	spriteMeterNeedle.reset(
+		Sprite::Create(needle, Vector2(1180, 620), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteMeterNeedle->SetSize(Vector2(7, 170));
+	spriteMeterNeedle->SetRotation((PI / 180) * -150);
+
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
 }
@@ -70,7 +94,7 @@ void GameScene::Update() {
 	enemyPop_->SetPlayer(player_);
 	enemyPop_->SetWing(wing_);
 	enemyPop_->Update(model_);
-	
+
 
 	//道路更新
 	load_->Update(player_->GetPlayerSpeed());
@@ -108,7 +132,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	
+
 	//背景描画
 	backGround_->Draw(viewProjection_);
 
@@ -117,7 +141,7 @@ void GameScene::Draw() {
 
 	//風描画
 	wing_->Draw(viewProjection_);
-	
+
 	// プレイヤーの描画
 	player_->Draw(viewProjection_);
 
@@ -138,6 +162,13 @@ void GameScene::Draw() {
 	if (GameResultFlag) {
 		spriteResult->Draw();
 	}
+	if (player_->GetTime() > 0) {
+		spriteStertTime[(player_->GetTime() / 60)]->Draw();
+	}
+	spriteMeter->Draw();
+
+	spriteMeterNeedle->SetRotation((((player_->GetKmH() / 400) * 240) - 150) * (PI / 180));
+	spriteMeterNeedle->Draw();
 	// デバッグテキストの描画
 	debugText_->DrawAll(commandList);
 	//

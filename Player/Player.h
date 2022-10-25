@@ -90,6 +90,8 @@ public://ゲッター
 
     int GetoOverTakingCount();
 
+    int GetTime();
+
 private:
     //ワールド変換データ
     WorldTransform worldTransform_;

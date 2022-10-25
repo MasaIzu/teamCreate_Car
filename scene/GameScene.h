@@ -87,6 +87,15 @@ class GameScene {
 	//ゲームクリア
 	std::unique_ptr<Sprite> spriteResult;
 
+	//最初のカウント
+	std::unique_ptr<Sprite> spriteStertTime[3];
+
+	//スピードメーター
+	std::unique_ptr<Sprite> spriteMeter;
+
+	//メーターの針
+	std::unique_ptr<Sprite> spriteMeterNeedle;
+
 	bool GameResultFlag = false;
 
 	/// <summary>

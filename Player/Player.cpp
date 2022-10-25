@@ -229,3 +229,8 @@ int Player::GetoOverTakingCount()
 {
 	return overTakingCount;
 }
+
+int Player::GetTime()
+{
+	return timer;
+}
