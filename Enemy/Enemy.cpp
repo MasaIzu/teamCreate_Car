@@ -16,6 +16,7 @@ void Enemy::Initialize(Model* model, Vector3& pos, CarModel carModel)
 	worldTransform_.translation_ = pos;
 	worldTransform_.scale_ = { 4,4,4 };
 	initPos = worldTransform_.translation_;
+
 	// ŽÔŽí‚ðÝ’è
 	carModel_ = carModel;
 
@@ -52,7 +53,7 @@ void Enemy::Update()
 	}
 	
 
-	if (contactFlag == false) {
+	//if (contactFlag == false) {
 		// ¶ŽÔü‚ÉˆÚ“®‰Â”\‚¾‚Á‚½‚çAˆêƒŒ[ƒ“ˆÚ“®‚³‚¹‚é
 		if (leftLaneChangeFlag_ == true) {
 			if (worldTransform_.translation_.x > initPos.x - (1 * loadWidth)) {
@@ -72,7 +73,7 @@ void Enemy::Update()
 				worldTransform_.translation_.x = initPos.x + (1 * loadWidth);
 			}
 		}
-	}
+	//}
 
 	
 
@@ -139,6 +140,7 @@ void Enemy::LeftLaneChangeCheck(Vector3& pos)
 		}
 	}
 	else {
+		initPos.x = worldTransform_.translation_.x;
 		leftLaneChangeFlag_ = true;
 	}
 }
@@ -154,6 +156,7 @@ void Enemy::RightLaneChangeCheck(Vector3& pos)
 		}
 	}
 	else {
+		initPos.x = worldTransform_.translation_.x;
 		rightLaneChangeFlag_ = true;
 	}
 }
@@ -178,7 +181,7 @@ void Enemy::Draw(const ViewProjection& viewProjection)
 void Enemy::ContactPlayer()
 {
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 5, 5), Vector3(5, 5, 5))) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 1, 6), Vector3(5, 1, 6))) {
 			if (player_->GetMovingFlag() == 0) {
 				fukitobiTime = fukitobiTimeMax;
 				contactVer0 = true;
@@ -187,7 +190,7 @@ void Enemy::ContactPlayer()
 		}
 	}
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 5, 5), Vector3(5, 5, 5))) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 1, 6), Vector3(5, 1, 6))) {
 			if (player_->GetMovingFlag() == 1) {
 				contactVer1 = true;
 			}

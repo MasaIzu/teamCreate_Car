@@ -114,7 +114,7 @@ private:// メンバ変数
 	bool rightLaneChangeFlag_ = false;
 
 	// 車線変更を行う際の前のの車との判定をとる半径
-	float laneRadius = 8 * 10;
+	float laneRadius = 10 * 10;
 
 	// 最初の位置を保存
 	Vector3 initPos;

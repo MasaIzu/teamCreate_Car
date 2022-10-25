@@ -27,7 +27,7 @@ void EnemyPop::Update(Model* model)
 	enemy1.remove_if([](std::unique_ptr<Enemy>& enemy) { return enemy->IsDead(); });
 
 	// プレイヤーのスピードに応じて敵のポップの間隔を上げる
-	popInterval = 2 * 60 - (4 * player_->GetPlayerSpeed());
+	popInterval = 3 * 60 - (10 * player_->GetPlayerSpeed());
 
 	
 	// タイマーが間隔時間になったらランダムに生成と車種を抽選して、設定する
@@ -242,8 +242,10 @@ void EnemyPop::Update(Model* model)
 						else {
 							Vector3 pos = enemy3->GetPos();
 
-							// 右に移動可能かチェック
-							enemy->RightLaneChangeCheck(pos);
+							if (enemy->rightLaneChangeFlag() == false) {
+								// 右に移動可能かチェック
+								enemy->RightLaneChangeCheck(pos);
+							}
 						}
 					}
 				}
@@ -259,8 +261,12 @@ void EnemyPop::Update(Model* model)
 						else {
 							Vector3 pos = enemy3->GetPos();
 
-							// 左に移動可能かチェック
-							enemy->LeftLaneChangeCheck(pos);
+							if (enemy->leftLaneChangeFlag() == false)
+							{
+								// 左に移動可能かチェック
+								enemy->LeftLaneChangeCheck(pos);
+							}
+							
 						}
 					}
 				}
@@ -280,9 +286,7 @@ void EnemyPop::Update(Model* model)
 	CarBack();
 	TrafficAccidentEnemyVer();
 
-	debugText_->SetPos(50, 90);
-	debugText_->Printf(
-		"(%d)", TrafficAccidentFlag);
+
 
 }
 

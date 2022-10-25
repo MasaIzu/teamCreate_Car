@@ -139,8 +139,8 @@ void Player::PlayerMove(){
 	kmH = playerSpeed * 25;
 
 	debugText_->SetPos(50, 70);
-	debugText_->Printf(
-		"speed:(%d,%f)", overTakingCount, playerSpeed);
+	//debugText_->Printf(
+	//	"speed:(%d,%f)", overTakingCount, playerSpeed);
 
 
 	//s—ñXV
