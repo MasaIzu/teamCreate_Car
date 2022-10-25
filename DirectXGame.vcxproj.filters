@@ -239,9 +239,6 @@
     <ClInclude Include="Enemy\EnemyPop.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Load.h">
-      <Filter>ヘッダー ファイル\backGround</Filter>
-    </ClInclude>
     <ClInclude Include="FPS.h">
       <Filter>ヘッダー ファイル\Control</Filter>
     </ClInclude>
@@ -253,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="background.h">
       <Filter>ヘッダー ファイル\backGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>ヘッダー ファイル\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

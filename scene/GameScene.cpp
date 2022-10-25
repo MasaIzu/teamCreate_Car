@@ -30,18 +30,20 @@ void GameScene::Initialize() {
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
+	viewProjection_.eye.x = 0;
 	viewProjection_.eye.y += 70;
 	viewProjection_.eye.z -= 80;
 	viewProjection_.target.y += 2;
 	gamePlayCameraPos = viewProjection_.eye;
 	cameraMoveFlag = 0;
-	Timer = 130;
+	Timer = 120;
 
 	//カメラの位置替え
 	viewProjection_.eye = { -70,63,-80 };
 	keepCamera = viewProjection_.eye;
 	cameraTransFlag = 0;
 	cameraSpeed = { 1.0f, 1.0f, 1.0f };
+
 
 	//道路生成
 	loadModel_ = Model::CreateFromOBJ("load", true);
@@ -88,8 +90,29 @@ void GameScene::Initialize() {
 	spriteMeterNeedle->SetSize(Vector2(7, 170));
 	spriteMeterNeedle->SetRotation((PI / 180) * -150);
 
+
+	rePlay = 0;
+	title = 0;
+
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
+}
+
+void GameScene::Clean() {
+	cameraMoveFlag = 0;
+	cameraTransFlag = 0;
+
+	if (rePlay == 1) {
+		rePlay = 0;
+		viewProjection_.eye = gamePlayCameraPos;
+		scene_ = Scene::Stage;
+	}
+	else if (title == 1) {
+		title = 0;
+		viewProjection_.eye = keepCamera;
+		scene_ = Scene::Title;
+	}
+
 }
 
 void GameScene::Update() {
@@ -103,7 +126,10 @@ void GameScene::Update() {
 	case GameScene::Scene::Blackout:
 		break;
 	case GameScene::Scene::Title:
-		camera();
+		if (input_->TriggerKey(DIK_SPACE)) {
+			cameraMoveFlag = 1;
+		}
+		camera(cameraMoveFlag);
 		//タイトルと背景自動移動
 		load_->Demo();
 		backGround_->Demo();
@@ -132,9 +158,22 @@ void GameScene::Update() {
 		}
 		break;
 	case GameScene::Scene::Result:
+		camera(0);
+		player_->Updata();
+		//道路更新
+		load_->Update(player_->GetPlayerSpeed());
+		//背景更新
+		backGround_->Update(player_->GetPlayerSpeed());
+		//風更新
+		wing_->Update(player_->GetPlayerPos());
 
+		if (rePlay == 1 || title == 1) {
+			scene_ = Scene::Initialize;
+		}
 		break;
 	case GameScene::Scene::Initialize:
+		//使ったもののおかたずけ
+		Clean();
 
 		break;
 	default:
@@ -196,6 +235,12 @@ void GameScene::Draw() {
 
 		break;
 	case GameScene::Scene::Result:
+		//背景描画
+		backGround_->Draw(viewProjection_);
+		//道路描画
+		load_->Draw(viewProjection_);
+		// プレイヤーの描画
+		player_->Draw(viewProjection_);
 
 		break;
 	case GameScene::Scene::Initialize:
@@ -251,12 +296,8 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::camera() {
-	if (cameraTransFlag == 0) {
-		if (input_->TriggerKey(DIK_SPACE)) {
-			cameraMoveFlag = 1;
-			cameraTransFlag = 1;
-		}
+void GameScene::camera(int x) {
+	if (x == 0) {
 		if (keepCamera.x > viewProjection_.eye.x) {
 			viewProjection_.eye.x += cameraSpeed.x;
 		}
@@ -277,10 +318,7 @@ void GameScene::camera() {
 			viewProjection_.eye.z -= cameraSpeed.z;
 		}
 	}
-	else if (cameraTransFlag == 1) {
-		if (input_->TriggerKey(DIK_SPACE)) {
-			cameraTransFlag = 0;
-		}
+	else if (x == 1) {
 		if (gamePlayCameraPos.x > viewProjection_.eye.x) {
 			viewProjection_.eye.x += cameraSpeed.x;
 		}

@@ -50,7 +50,12 @@ class GameScene {
 	/// </summary>
 	void Draw();
 
-	void camera();
+	void camera(int x);
+
+	/// <summary>
+	/// 使ったもののおかたずけ
+	/// </summary>
+	void Clean();
 
 	enum class Scene {
 		Blackout,//暗転シーン
@@ -104,11 +109,11 @@ class GameScene {
 	Vector3 gamePlayCameraPos;
 	Vector3 keepCamera;
 
-	int cameraTransFlag = 0;
+	int cameraTransFlag;
 	Vector3 cameraSpeed;
 
-	int cameraMoveFlag = 0;
-	int Timer = 0;
+	int cameraMoveFlag;
+	int Timer;
 
 	//ゲームクリア
 	std::unique_ptr<Sprite> spriteResult;
@@ -121,6 +126,9 @@ class GameScene {
 
 	//メーターの針
 	std::unique_ptr<Sprite> spriteMeterNeedle;
+
+	int rePlay;
+	int title;
 
 	/// <summary>
 	/// ゲームシーン用
