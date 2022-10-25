@@ -37,6 +37,8 @@ public://ゲッターセッター
 	void  SetPlayer(Player* player) { player_ = player; }
 	void SetWing(Wing* wing) { wing_ = wing; }
 
+	float GetGoalEmemyPos();
+
 private:
 	// 車種のパターンを抽選する関数
 	void CarModelLottery();

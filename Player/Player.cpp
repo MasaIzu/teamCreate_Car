@@ -230,3 +230,8 @@ void Player::SetOverTakingCount(int count) {
 	overTakingCount = count;
 
 }
+
+int Player::GetTimer()
+{
+	return timer;
+}

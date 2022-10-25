@@ -2,6 +2,9 @@
 #include "TextureManager.h"
 #include <cassert>
 #include <time.h>
+
+float PI = 3.141592f;
+
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
@@ -39,7 +42,7 @@ void GameScene::Initialize() {
 	keepCamera = viewProjection_.eye;
 	cameraTransFlag = 0;
 	cameraSpeed = { 1.0f, 1.0f, 1.0f };
-	
+
 	//道路生成
 	loadModel_ = Model::CreateFromOBJ("load", true);
 	load_ = new Load();
@@ -56,6 +59,34 @@ void GameScene::Initialize() {
 	wingModel_ = Model::CreateFromOBJ("wing", true);
 	wing_ = new Wing();
 	wing_->Initialize(wingModel_);
+
+	//クリアのテクスチャ
+	uint32_t result = TextureManager::Load("TitleCar.png");
+	spriteResult.reset(
+		Sprite::Create(result, Vector2(640, 360), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteResult->SetSize(Vector2(800.0f, 600.0f));
+
+	//スタートのカウントののテクスチャ
+	uint32_t  stertCount = TextureManager::Load("stert321.png");
+	for (int i = 0; i < 3; i++) {
+		spriteStertTime[i].reset(
+			Sprite::Create(stertCount, Vector2(640, 360), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+		spriteStertTime[i]->SetTextureRect(Vector2(256 - (128 * i), 0), Vector2(128, 192));
+		spriteStertTime[i]->SetSize(Vector2(128, 128));
+	}
+
+	//クリアのテクスチャ
+	uint32_t meter = TextureManager::Load("meter.png");
+	spriteMeter.reset(
+		Sprite::Create(meter, Vector2(1180, 620), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteMeter->SetSize(Vector2(200, 200));
+
+	//針のテクスチャ
+	uint32_t needle = TextureManager::Load("needle.png");
+	spriteMeterNeedle.reset(
+		Sprite::Create(needle, Vector2(1180, 620), Vector4(1, 1, 1, 1), Vector2(0.5, 0.5)));
+	spriteMeterNeedle->SetSize(Vector2(7, 170));
+	spriteMeterNeedle->SetRotation((PI / 180) * -150);
 
 	viewProjection_.UpdateMatrix();
 	viewProjection_.TransferMatrix();
@@ -95,6 +126,10 @@ void GameScene::Update() {
 		backGround_->Update(player_->GetPlayerSpeed());
 		//風更新
 		wing_->Update(player_->GetPlayerPos());
+
+		if (player_->GetPlayerPos().z > enemyPop_->GetGoalEmemyPos()) {
+			scene_ = Scene::Result;
+		}
 		break;
 	case GameScene::Scene::Result:
 
@@ -134,7 +169,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	
+
 	switch (scene_) {
 	case GameScene::Scene::Blackout:
 		break;
@@ -181,6 +216,31 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+
+	switch (scene_) {
+	case GameScene::Scene::Blackout:
+		break;
+	case GameScene::Scene::Title:
+
+		break;
+	case GameScene::Scene::Stage:
+		if (player_->GetTimer() > 0) {
+			spriteStertTime[(player_->GetTimer() / 60)]->Draw();
+		}
+		spriteMeter->Draw();
+
+		spriteMeterNeedle->SetRotation((((player_->GetKmH() / 400) * 240) - 150) * (PI / 180));
+		spriteMeterNeedle->Draw();
+		break;
+	case GameScene::Scene::Result:
+		spriteResult->Draw();
+		break;
+	case GameScene::Scene::Initialize:
+
+		break;
+	default:
+		break;
+	}
 
 	// デバッグテキストの描画
 	debugText_->DrawAll(commandList);

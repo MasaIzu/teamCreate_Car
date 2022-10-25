@@ -364,6 +364,14 @@ int EnemyPop::GetTrafficAccidentFlag() {
 	return TrafficAccidentFlag;
 }
 
+float EnemyPop::GetGoalEmemyPos()
+{
+	if (GoalEnemy!= NULL) {
+		return GoalEnemy->GetPos().z;
+	}
+	return 100.0f;
+}
+
 void EnemyPop::CarModelLottery()
 {
 	// 車種のパターンを抽選

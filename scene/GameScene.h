@@ -110,6 +110,18 @@ class GameScene {
 	int cameraMoveFlag = 0;
 	int Timer = 0;
 
+	//ゲームクリア
+	std::unique_ptr<Sprite> spriteResult;
+
+	//最初のカウント
+	std::unique_ptr<Sprite> spriteStertTime[3];
+
+	//スピードメーター
+	std::unique_ptr<Sprite> spriteMeter;
+
+	//メーターの針
+	std::unique_ptr<Sprite> spriteMeterNeedle;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
