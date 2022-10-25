@@ -181,7 +181,7 @@ void Enemy::Draw(const ViewProjection& viewProjection)
 void Enemy::ContactPlayer()
 {
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 1, 6), Vector3(5, 1, 6))) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
 			if (player_->GetMovingFlag() == 0) {
 				fukitobiTime = fukitobiTimeMax;
 				contactVer0 = true;
@@ -190,7 +190,7 @@ void Enemy::ContactPlayer()
 		}
 	}
 	if (contactFlag == false) {
-		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 1, 6), Vector3(5, 1, 6))) {
+		if (collision_->boxCollision(player_->GetPlayerPos(), worldTransform_.translation_, Vector3(5, 2, 5), Vector3(5, 6, 6))) {
 			if (player_->GetMovingFlag() == 1) {
 				contactVer1 = true;
 			}
