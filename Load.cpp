@@ -42,10 +42,10 @@ void Load::Update(float speed) {
 
 void Load::Demo() {
 	for (int i = 0; i < 30; i++) {
-		worldTransform_[i].translation_.z -= 20;
+		worldTransform_[i].translation_.z -= 10;
 
 		if (worldTransform_[i].translation_.z < -117) {
-			worldTransform_[0].translation_.z = worldTransform_[29].translation_.z + (37 - 20);
+			worldTransform_[0].translation_.z = worldTransform_[29].translation_.z + (37 - 10);
 			if (i != 0) {
 				worldTransform_[i].translation_.z = worldTransform_[i - 1].translation_.z + 39;
 			}

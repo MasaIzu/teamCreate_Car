@@ -39,7 +39,7 @@ void BackGround::Update(float speed) {
 
 void BackGround::Demo() {
 	for (int i = 0; i < 2; i++) {
-		worldTransform_[i].translation_.z -= 20;
+		worldTransform_[i].translation_.z -= 10;
 
 		if (worldTransform_[i].translation_.z < -12000) {
 			worldTransform_[i].translation_.z = 12000;

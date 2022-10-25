@@ -112,7 +112,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	
+
 	//背景描画
 	backGround_->Draw(viewProjection_);
 
